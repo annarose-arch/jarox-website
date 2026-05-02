@@ -1,0 +1,1215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.65">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    span.s1 {font: 12.0px 'PingFang SC'}
+    span.s2 {font: 12.0px 'Lucida Grande'}
+    span.s3 {font: 12.0px 'Apple Color Emoji'}
+    span.s4 {font: 12.0px 'Zapf Dingbats'}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;html lang="de"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;Jarox — Swiss AI Software&lt;/title&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }</p>
+<p class="p2"><br></p>
+<p class="p1">:root {</p>
+<p class="p1">–navy: #050C1A;</p>
+<p class="p1">–navy2: #080F1E;</p>
+<p class="p1">–navy3: #0D1526;</p>
+<p class="p1">–navy4: #111C30;</p>
+<p class="p1">–silver: #C8D6E8;</p>
+<p class="p1">–platinum: #E8EEF5;</p>
+<p class="p1">–accent: #4A90D9;</p>
+<p class="p1">–accent-dim: rgba(74,144,217,0.12);</p>
+<p class="p1">–text: #D4E0EE;</p>
+<p class="p1">–muted: #4A5A72;</p>
+<p class="p1">–border: rgba(200,214,232,0.1);</p>
+<p class="p1">–border2: rgba(200,214,232,0.06);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">html { scroll-behavior: smooth; }</p>
+<p class="p2"><br></p>
+<p class="p1">body {</p>
+<p class="p1">background: var(–navy);</p>
+<p class="p1">color: var(–text);</p>
+<p class="p1">font-family: ‘Space Grotesk’, sans-serif;</p>
+<p class="p1">font-size: 16px;</p>
+<p class="p1">line-height: 1.6;</p>
+<p class="p1">overflow-x: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">body::after {</p>
+<p class="p1">content: ‘’;</p>
+<p class="p1">position: fixed;</p>
+<p class="p1">inset: 0;</p>
+<p class="p1">background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 512 512’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.75’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.025’/%3E%3C/svg%3E”);</p>
+<p class="p1">pointer-events: none;</p>
+<p class="p1">z-index: 998;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* NAV */</p>
+<p class="p1">nav {</p>
+<p class="p1">position: fixed;</p>
+<p class="p1">top: 0; left: 0; right: 0;</p>
+<p class="p1">z-index: 100;</p>
+<p class="p1">padding: 0 56px;</p>
+<p class="p1">height: 72px;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">justify-content: space-between;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">border-bottom: 1px solid var(–border2);</p>
+<p class="p1">background: rgba(5,12,26,0.88);</p>
+<p class="p1">backdrop-filter: blur(20px);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-logo {</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 16px;</p>
+<p class="p1">font-weight: 700;</p>
+<p class="p1">color: var(–platinum);</p>
+<p class="p1">letter-spacing: 0.2em;</p>
+<p class="p1">text-decoration: none;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 10px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-logo::before {</p>
+<p class="p1">content: ‘’;</p>
+<p class="p1">width: 8px; height: 8px;</p>
+<p class="p1">background: var(–accent);</p>
+<p class="p1">border-radius: 50%;</p>
+<p class="p1">box-shadow: 0 0 8px var(–accent);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-right {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 32px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-links {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">gap: 28px;</p>
+<p class="p1">list-style: none;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-links a {</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">text-decoration: none;</p>
+<p class="p1">font-size: 13px;</p>
+<p class="p1">letter-spacing: 0.06em;</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">transition: color 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-links a:hover { color: var(–silver); }</p>
+<p class="p2"><br></p>
+<p class="p1">/* Lang switcher */</p>
+<p class="p1">.lang-switcher {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">gap: 4px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.lang-btn {</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 11px;</p>
+<p class="p1">font-weight: 700;</p>
+<p class="p1">letter-spacing: 0.05em;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">background: transparent;</p>
+<p class="p1">border: 1px solid transparent;</p>
+<p class="p1">padding: 4px 8px;</p>
+<p class="p1">border-radius: 3px;</p>
+<p class="p1">cursor: pointer;</p>
+<p class="p1">transition: all 0.15s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.lang-btn:hover { color: var(–silver); }</p>
+<p class="p1">.lang-btn.active {</p>
+<p class="p1">color: var(–accent);</p>
+<p class="p1">border-color: rgba(74,144,217,0.3);</p>
+<p class="p1">background: rgba(74,144,217,0.08);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-cta {</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 12px;</p>
+<p class="p1">font-weight: 700;</p>
+<p class="p1">letter-spacing: 0.08em;</p>
+<p class="p1">color: var(–navy) !important;</p>
+<p class="p1">background: var(–silver);</p>
+<p class="p1">padding: 8px 18px;</p>
+<p class="p1">border-radius: 4px;</p>
+<p class="p1">text-decoration: none;</p>
+<p class="p1">transition: all 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.nav-cta:hover { background: var(–platinum); }</p>
+<p class="p2"><br></p>
+<p class="p1">/* HERO */</p>
+<p class="p1">.hero {</p>
+<p class="p1">min-height: 100vh;</p>
+<p class="p1">padding: 140px 56px 100px;</p>
+<p class="p1">position: relative;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-mesh {</p>
+<p class="p1">position: absolute; inset: 0;</p>
+<p class="p1">background:</p>
+<p class="p1">radial-gradient(ellipse 70% 60% at 80% 40%, rgba(74,144,217,0.07) 0%, transparent 60%),</p>
+<p class="p1">radial-gradient(ellipse 50% 70% at 10% 70%, rgba(74,144,217,0.04) 0%, transparent 55%);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-dots {</p>
+<p class="p1">position: absolute; inset: 0;</p>
+<p class="p1">background-image: radial-gradient(circle, rgba(200,214,232,0.12) 1px, transparent 1px);</p>
+<p class="p1">background-size: 40px 40px;</p>
+<p class="p1">mask-image: radial-gradient(ellipse 90% 80% at 60% 40%, black 20%, transparent 80%);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-lines {</p>
+<p class="p1">position: absolute;</p>
+<p class="p1">right: 0; top: 0; bottom: 0;</p>
+<p class="p1">width: 50%;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-lines svg {</p>
+<p class="p1">position: absolute;</p>
+<p class="p1">right: 0; top: 50%;</p>
+<p class="p1">transform: translateY(-50%);</p>
+<p class="p1">opacity: 0.08;</p>
+<p class="p1">width: 100%;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-content { position: relative; max-width: 760px; }</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-eyebrow {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 12px;</p>
+<p class="p1">margin-bottom: 36px;</p>
+<p class="p1">animation: fadeUp 1s ease both;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.eyebrow-line { width: 32px; height: 1px; background: var(–accent); }</p>
+<p class="p2"><br></p>
+<p class="p1">.eyebrow-text {</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 11px;</p>
+<p class="p1">letter-spacing: 0.2em;</p>
+<p class="p1">color: var(–accent);</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">h1 {</p>
+<p class="p1">font-size: clamp(48px, 6.5vw, 88px);</p>
+<p class="p1">font-weight: 700;</p>
+<p class="p1">line-height: 1.0;</p>
+<p class="p1">letter-spacing: -0.02em;</p>
+<p class="p1">margin-bottom: 32px;</p>
+<p class="p1">animation: fadeUp 1s 0.1s ease both;</p>
+<p class="p1">color: var(–platinum);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">h1 em {</p>
+<p class="p1">font-style: normal;</p>
+<p class="p1">color: transparent;</p>
+<p class="p1">-webkit-text-stroke: 1px rgba(200,214,232,0.4);</p>
+<p class="p1">display: block;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-desc {</p>
+<p class="p1">font-size: 18px;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">font-weight: 300;</p>
+<p class="p1">max-width: 500px;</p>
+<p class="p1">line-height: 1.8;</p>
+<p class="p1">margin-bottom: 52px;</p>
+<p class="p1">animation: fadeUp 1s 0.2s ease both;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-ctas {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">gap: 14px;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">animation: fadeUp 1s 0.3s ease both;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.btn-primary {</p>
+<p class="p1">background: var(–silver);</p>
+<p class="p1">color: var(–navy);</p>
+<p class="p1">border: none;</p>
+<p class="p1">padding: 13px 28px;</p>
+<p class="p1">border-radius: 4px;</p>
+<p class="p1">font-size: 14px;</p>
+<p class="p1">font-weight: 600;</p>
+<p class="p1">font-family: ‘Space Grotesk’, sans-serif;</p>
+<p class="p1">cursor: pointer;</p>
+<p class="p1">text-decoration: none;</p>
+<p class="p1">letter-spacing: 0.02em;</p>
+<p class="p1">transition: all 0.2s;</p>
+<p class="p1">display: inline-flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 8px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.btn-primary:hover { background: var(–platinum); transform: translateY(-1px); }</p>
+<p class="p2"><br></p>
+<p class="p1">.btn-outline {</p>
+<p class="p1">background: transparent;</p>
+<p class="p1">color: var(–silver);</p>
+<p class="p1">border: 1px solid var(–border);</p>
+<p class="p1">padding: 13px 28px;</p>
+<p class="p1">border-radius: 4px;</p>
+<p class="p1">font-size: 14px;</p>
+<p class="p1">font-weight: 400;</p>
+<p class="p1">font-family: ‘Space Grotesk’, sans-serif;</p>
+<p class="p1">cursor: pointer;</p>
+<p class="p1">text-decoration: none;</p>
+<p class="p1">transition: all 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.btn-outline:hover { border-color: rgba(200,214,232,0.3); background: rgba(200,214,232,0.04); }</p>
+<p class="p2"><br></p>
+<p class="p1">/* TICKER */</p>
+<p class="p1">.ticker {</p>
+<p class="p1">border-top: 1px solid var(–border2);</p>
+<p class="p1">border-bottom: 1px solid var(–border2);</p>
+<p class="p1">padding: 14px 0;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">background: var(–navy2);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.ticker-inner {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">gap: 60px;</p>
+<p class="p1">width: max-content;</p>
+<p class="p1">animation: ticker 22s linear infinite;</p>
+<p class="p1">white-space: nowrap;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.ticker-item {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 10px;</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 11px;</p>
+<p class="p1">letter-spacing: 0.15em;</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(–accent); opacity: 0.6; }</p>
+<p class="p2"><br></p>
+<p class="p1">@keyframes ticker {</p>
+<p class="p1">from { transform: translateX(0); }</p>
+<p class="p1">to { transform: translateX(-50%); }</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* SECTIONS */</p>
+<p class="p1">section { padding: 100px 56px; }</p>
+<p class="p2"><br></p>
+<p class="p1">.label {</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 10px;</p>
+<p class="p1">letter-spacing: 0.25em;</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">color: var(–accent);</p>
+<p class="p1">margin-bottom: 24px;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 12px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.label::before { content: ‘’; display: inline-block; width: 20px; height: 1px; background: var(–accent); }</p>
+<p class="p2"><br></p>
+<p class="p1">h2 {</p>
+<p class="p1">font-size: clamp(28px, 3.5vw, 44px);</p>
+<p class="p1">font-weight: 600;</p>
+<p class="p1">letter-spacing: -0.01em;</p>
+<p class="p1">line-height: 1.15;</p>
+<p class="p1">color: var(–platinum);</p>
+<p class="p1">margin-bottom: 18px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.sub {</p>
+<p class="p1">font-size: 16px;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">font-weight: 300;</p>
+<p class="p1">max-width: 440px;</p>
+<p class="p1">line-height: 1.8;</p>
+<p class="p1">margin-bottom: 60px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* PRODUCTS */</p>
+<p class="p1">#products { background: var(–navy2); border-top: 1px solid var(–border2); }</p>
+<p class="p2"><br></p>
+<p class="p1">.product-hero {</p>
+<p class="p1">display: grid;</p>
+<p class="p1">grid-template-columns: 1fr 1fr;</p>
+<p class="p1">gap: 2px;</p>
+<p class="p1">background: var(–border2);</p>
+<p class="p1">border: 1px solid var(–border2);</p>
+<p class="p1">border-radius: 8px 8px 0 0;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.product-main {</p>
+<p class="p1">background: var(–navy3);</p>
+<p class="p1">padding: 52px;</p>
+<p class="p1">position: relative;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.product-main::after {</p>
+<p class="p1">content: ‘’;</p>
+<p class="p1">position: absolute;</p>
+<p class="p1">top: -40px; right: -40px;</p>
+<p class="p1">width: 200px; height: 200px;</p>
+<p class="p1">background: radial-gradient(circle, rgba(74,144,217,0.1) 0%, transparent 70%);</p>
+<p class="p1">border-radius: 50%;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.product-visual {</p>
+<p class="p1">background: var(–navy4);</p>
+<p class="p1">padding: 52px;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">justify-content: center;</p>
+<p class="p1">position: relative;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.product-visual::before {</p>
+<p class="p1">content: ‘’;</p>
+<p class="p1">position: absolute; inset: 0;</p>
+<p class="p1">background: linear-gradient(135deg, rgba(74,144,217,0.04) 0%, transparent 60%);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.mockup {</p>
+<p class="p1">width: 100%;</p>
+<p class="p1">max-width: 280px;</p>
+<p class="p1">background: var(–navy);</p>
+<p class="p1">border: 1px solid var(–border);</p>
+<p class="p1">border-radius: 12px;</p>
+<p class="p1">padding: 20px;</p>
+<p class="p1">position: relative;</p>
+<p class="p1">z-index: 1;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.mockup-bar { display: flex; gap: 6px; margin-bottom: 16px; }</p>
+<p class="p1">.mockup-dot { width: 8px; height: 8px; border-radius: 50%; }</p>
+<p class="p1">.mockup-row { height: 8px; border-radius: 4px; margin-bottom: 8px; background: var(–border); }</p>
+<p class="p1">.mockup-row.accent { background: rgba(74,144,217,0.3); width: 60%; }</p>
+<p class="p1">.mockup-row.silver { background: rgba(200,214,232,0.15); width: 80%; }</p>
+<p class="p1">.mockup-row.short { width: 45%; }</p>
+<p class="p1">.mockup-card { background: var(–navy2); border: 1px solid var(–border2); border-radius: 8px; padding: 14px; margin-top: 12px; }</p>
+<p class="p1">.mockup-num { font-family: ‘Space Mono’, monospace; font-size: 18px; font-weight: 700; color: var(–silver); margin-bottom: 4px; }</p>
+<p class="p1">.mockup-lbl { font-size: 11px; color: var(–muted); letter-spacing: 0.05em; }</p>
+<p class="p2"><br></p>
+<p class="p1">.product-badge {</p>
+<p class="p1">display: inline-flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 6px;</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 10px;</p>
+<p class="p1">letter-spacing: 0.12em;</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">color: var(–accent);</p>
+<p class="p1">border: 1px solid rgba(74,144,217,0.3);</p>
+<p class="p1">padding: 4px 12px;</p>
+<p class="p1">border-radius: 2px;</p>
+<p class="p1">margin-bottom: 20px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.product-badge::before {</p>
+<p class="p1">content: ‘’;</p>
+<p class="p1">width: 5px; height: 5px;</p>
+<p class="p1">border-radius: 50%;</p>
+<p class="p1">background: var(–accent);</p>
+<p class="p1">box-shadow: 0 0 6px var(–accent);</p>
+<p class="p1">animation: pulse 2s infinite;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }</p>
+<p class="p2"><br></p>
+<p class="p1">.product-main h3 {</p>
+<p class="p1">font-size: 32px;</p>
+<p class="p1">font-weight: 600;</p>
+<p class="p1">color: var(–platinum);</p>
+<p class="p1">margin-bottom: 12px;</p>
+<p class="p1">letter-spacing: -0.01em;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.product-main p {</p>
+<p class="p1">font-size: 15px;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">font-weight: 300;</p>
+<p class="p1">line-height: 1.8;</p>
+<p class="p1">margin-bottom: 28px;</p>
+<p class="p1">max-width: 380px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.features-list {</p>
+<p class="p1">display: grid;</p>
+<p class="p1">grid-template-columns: 1fr 1fr;</p>
+<p class="p1">gap: 10px;</p>
+<p class="p1">margin-bottom: 36px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.feature-item {</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 8px;</p>
+<p class="p1">font-size: 13px;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.feature-item::before { content: ‘·’; color: var(–accent); font-size: 18px; line-height: 1; }</p>
+<p class="p2"><br></p>
+<p class="p1">.product-link {</p>
+<p class="p1">display: inline-flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 8px;</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 12px;</p>
+<p class="p1">letter-spacing: 0.08em;</p>
+<p class="p1">color: var(–silver);</p>
+<p class="p1">text-decoration: none;</p>
+<p class="p1">border-bottom: 1px solid var(–border);</p>
+<p class="p1">padding-bottom: 2px;</p>
+<p class="p1">transition: all 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.product-link:hover { color: var(–platinum); border-color: var(–silver); gap: 12px; }</p>
+<p class="p2"><br></p>
+<p class="p1">.upcoming-grid {</p>
+<p class="p1">display: grid;</p>
+<p class="p1">grid-template-columns: 1fr 1fr;</p>
+<p class="p1">gap: 2px;</p>
+<p class="p1">background: var(–border2);</p>
+<p class="p1">border: 1px solid var(–border2);</p>
+<p class="p1">border-top: none;</p>
+<p class="p1">border-radius: 0 0 8px 8px;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.upcoming-card {</p>
+<p class="p1">background: var(–navy3);</p>
+<p class="p1">padding: 36px;</p>
+<p class="p1">transition: background 0.2s;</p>
+<p class="p1">position: relative;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.upcoming-card:hover { background: var(–navy4); }</p>
+<p class="p2"><br></p>
+<p class="p1">.upcoming-card h4 { font-size: 18px; font-weight: 500; color: var(–silver); margin-bottom: 8px; }</p>
+<p class="p1">.upcoming-card p { font-size: 14px; color: var(–muted); font-weight: 300; line-height: 1.7; }</p>
+<p class="p2"><br></p>
+<p class="p1">.soon-tag {</p>
+<p class="p1">position: absolute;</p>
+<p class="p1">top: 36px; right: 36px;</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 9px;</p>
+<p class="p1">letter-spacing: 0.15em;</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">border: 1px solid var(–border2);</p>
+<p class="p1">padding: 3px 8px;</p>
+<p class="p1">border-radius: 2px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* MISSION */</p>
+<p class="p1">.values {</p>
+<p class="p1">display: grid;</p>
+<p class="p1">grid-template-columns: repeat(4, 1fr);</p>
+<p class="p1">gap: 1px;</p>
+<p class="p1">background: var(–border2);</p>
+<p class="p1">border: 1px solid var(–border2);</p>
+<p class="p1">border-radius: 8px;</p>
+<p class="p1">overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.value { background: var(–navy2); padding: 40px 32px; transition: background 0.2s; }</p>
+<p class="p1">.value:hover { background: var(–navy3); }</p>
+<p class="p1">.value-num { font-family: ‘Space Mono’, monospace; font-size: 11px; color: var(–muted); letter-spacing: 0.1em; margin-bottom: 20px; }</p>
+<p class="p1">.value-icon { font-size: 24px; margin-bottom: 16px; display: block; }</p>
+<p class="p1">.value h4 { font-size: 16px; font-weight: 600; color: var(–silver); margin-bottom: 8px; }</p>
+<p class="p1">.value p { font-size: 13px; color: var(–muted); font-weight: 300; line-height: 1.7; }</p>
+<p class="p2"><br></p>
+<p class="p1">/* CONTACT */</p>
+<p class="p1">#contact { background: var(–navy2); border-top: 1px solid var(–border2); }</p>
+<p class="p2"><br></p>
+<p class="p1">.form {</p>
+<p class="p1">max-width: 560px;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">flex-direction: column;</p>
+<p class="p1">gap: 16px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.field label {</p>
+<p class="p1">display: block;</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 10px;</p>
+<p class="p1">letter-spacing: 0.15em;</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">margin-bottom: 8px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.field input, .field textarea {</p>
+<p class="p1">width: 100%;</p>
+<p class="p1">background: var(–navy);</p>
+<p class="p1">border: 1px solid var(–border2);</p>
+<p class="p1">border-radius: 4px;</p>
+<p class="p1">padding: 12px 16px;</p>
+<p class="p1">color: var(–text);</p>
+<p class="p1">font-family: ‘Space Grotesk’, sans-serif;</p>
+<p class="p1">font-size: 14px;</p>
+<p class="p1">font-weight: 300;</p>
+<p class="p1">outline: none;</p>
+<p class="p1">transition: border-color 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.field input:focus, .field textarea:focus { border-color: rgba(74,144,217,0.4); }</p>
+<p class="p1">.field textarea { height: 100px; resize: none; }</p>
+<p class="p2"><br></p>
+<p class="p1">.form-notice {</p>
+<p class="p1">font-size: 12px;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">font-weight: 300;</p>
+<p class="p1">line-height: 1.6;</p>
+<p class="p1">margin-top: 4px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* FOOTER */</p>
+<p class="p1">footer {</p>
+<p class="p1">padding: 28px 56px;</p>
+<p class="p1">border-top: 1px solid var(–border2);</p>
+<p class="p1">display: flex;</p>
+<p class="p1">justify-content: space-between;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">background: var(–navy);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.footer-logo {</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 13px;</p>
+<p class="p1">font-weight: 700;</p>
+<p class="p1">color: var(–silver);</p>
+<p class="p1">letter-spacing: 0.2em;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">gap: 8px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.footer-logo::before { content: ‘’; width: 6px; height: 6px; background: var(–accent); border-radius: 50%; }</p>
+<p class="p2"><br></p>
+<p class="p1">.footer-mid { font-family: ‘Space Mono’, monospace; font-size: 11px; color: var(–muted); }</p>
+<p class="p2"><br></p>
+<p class="p1">.footer-links { display: flex; gap: 24px; list-style: none; }</p>
+<p class="p2"><br></p>
+<p class="p1">.footer-links a {</p>
+<p class="p1">font-size: 12px;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">text-decoration: none;</p>
+<p class="p1">letter-spacing: 0.04em;</p>
+<p class="p1">cursor: pointer;</p>
+<p class="p1">transition: color 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.footer-links a:hover { color: var(–silver); }</p>
+<p class="p2"><br></p>
+<p class="p1">/* MODAL */</p>
+<p class="p1">.modal-overlay {</p>
+<p class="p1">display: none;</p>
+<p class="p1">position: fixed;</p>
+<p class="p1">inset: 0;</p>
+<p class="p1">background: rgba(5,12,26,0.92);</p>
+<p class="p1">backdrop-filter: blur(12px);</p>
+<p class="p1">z-index: 500;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">justify-content: center;</p>
+<p class="p1">padding: 24px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.modal-overlay.open { display: flex; }</p>
+<p class="p2"><br></p>
+<p class="p1">.modal {</p>
+<p class="p1">background: var(–navy3);</p>
+<p class="p1">border: 1px solid var(–border);</p>
+<p class="p1">border-radius: 8px;</p>
+<p class="p1">padding: 48px;</p>
+<p class="p1">max-width: 680px;</p>
+<p class="p1">width: 100%;</p>
+<p class="p1">max-height: 80vh;</p>
+<p class="p1">overflow-y: auto;</p>
+<p class="p1">position: relative;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.modal h3 {</p>
+<p class="p1">font-family: ‘Space Mono’, monospace;</p>
+<p class="p1">font-size: 14px;</p>
+<p class="p1">letter-spacing: 0.15em;</p>
+<p class="p1">text-transform: uppercase;</p>
+<p class="p1">color: var(–platinum);</p>
+<p class="p1">margin-bottom: 28px;</p>
+<p class="p1">padding-bottom: 16px;</p>
+<p class="p1">border-bottom: 1px solid var(–border2);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.modal-close {</p>
+<p class="p1">position: absolute;</p>
+<p class="p1">top: 20px; right: 20px;</p>
+<p class="p1">background: transparent;</p>
+<p class="p1">border: 1px solid var(–border2);</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">width: 32px; height: 32px;</p>
+<p class="p1">border-radius: 4px;</p>
+<p class="p1">cursor: pointer;</p>
+<p class="p1">font-size: 16px;</p>
+<p class="p1">display: flex;</p>
+<p class="p1">align-items: center;</p>
+<p class="p1">justify-content: center;</p>
+<p class="p1">transition: all 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.modal-close:hover { border-color: var(–border); color: var(–silver); }</p>
+<p class="p2"><br></p>
+<p class="p1">.modal-section { margin-bottom: 24px; }</p>
+<p class="p2"><br></p>
+<p class="p1">.modal-section h4 {</p>
+<p class="p1">font-size: 13px;</p>
+<p class="p1">font-weight: 600;</p>
+<p class="p1">color: var(–silver);</p>
+<p class="p1">margin-bottom: 8px;</p>
+<p class="p1">letter-spacing: 0.04em;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.modal-section p {</p>
+<p class="p1">font-size: 13px;</p>
+<p class="p1">color: var(–muted);</p>
+<p class="p1">font-weight: 300;</p>
+<p class="p1">line-height: 1.8;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ANIMATIONS */</p>
+<p class="p1">@keyframes fadeUp {</p>
+<p class="p1">from { opacity: 0; transform: translateY(20px); }</p>
+<p class="p1">to { opacity: 1; transform: translateY(0); }</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }</p>
+<p class="p1">.reveal.visible { opacity: 1; transform: translateY(0); }</p>
+<p class="p2"><br></p>
+<p class="p1">/* RESPONSIVE */</p>
+<p class="p1">@media (max-width: 900px) {</p>
+<p class="p1">nav { padding: 0 20px; }</p>
+<p class="p1">.nav-links { display: none; }</p>
+<p class="p1">.hero { padding: 110px 24px 80px; }</p>
+<p class="p1">section { padding: 70px 24px; }</p>
+<p class="p1">.product-hero, .upcoming-grid { grid-template-columns: 1fr; }</p>
+<p class="p1">.values { grid-template-columns: 1fr 1fr; }</p>
+<p class="p1">footer { flex-direction: column; gap: 16px; text-align: center; }</p>
+<p class="p1">.footer-links { justify-content: center; }</p>
+<p class="p1">.modal { padding: 32px 24px; }</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- NAV --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;nav&gt;</p>
+<p class="p1">  &lt;a href="#" class="nav-logo"&gt;JAROX&lt;/a&gt;</p>
+<p class="p1">  &lt;div class="nav-right"&gt;</p>
+<p class="p1">    &lt;ul class="nav-links"&gt;</p>
+<p class="p1">      &lt;li&gt;&lt;a href="#products" data-i18n="nav_products"&gt;Produkte&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1">      &lt;li&gt;&lt;a href="#mission" data-i18n="nav_mission"&gt;Mission&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1">      &lt;li&gt;&lt;a href="#contact" data-i18n="nav_contact"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1">    &lt;/ul&gt;</p>
+<p class="p1">    &lt;div class="lang-switcher"&gt;</p>
+<p class="p1">      &lt;button class="lang-btn active" onclick="setLang('de')"&gt;DE&lt;/button&gt;</p>
+<p class="p1">      &lt;button class="lang-btn" onclick="setLang('en')"&gt;EN&lt;/button&gt;</p>
+<p class="p1">      &lt;button class="lang-btn" onclick="setLang('fr')"&gt;FR&lt;/button&gt;</p>
+<p class="p1">      &lt;button class="lang-btn" onclick="setLang('it')"&gt;IT&lt;/button&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;a href="https://www.bauabnahme.app" target="_blank" class="nav-cta"&gt;BauAbnahme <span class="s1">↗</span>&lt;/a&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- HERO --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section class="hero"&gt;</p>
+<p class="p1">  &lt;div class="hero-mesh"&gt;&lt;/div&gt;</p>
+<p class="p1">  &lt;div class="hero-dots"&gt;&lt;/div&gt;</p>
+<p class="p1">  &lt;div class="hero-lines"&gt;</p>
+<p class="p1">    &lt;svg viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;</p>
+<p class="p1">      &lt;circle cx="300" cy="400" r="200" stroke="#4A90D9" stroke-width="0.5"/&gt;</p>
+<p class="p1">      &lt;circle cx="300" cy="400" r="280" stroke="#4A90D9" stroke-width="0.5"/&gt;</p>
+<p class="p1">      &lt;circle cx="300" cy="400" r="360" stroke="#4A90D9" stroke-width="0.5"/&gt;</p>
+<p class="p1">      &lt;line x1="0" y1="400" x2="600" y2="400" stroke="#4A90D9" stroke-width="0.5"/&gt;</p>
+<p class="p1">      &lt;line x1="300" y1="0" x2="300" y2="800" stroke="#4A90D9" stroke-width="0.5"/&gt;</p>
+<p class="p1">      &lt;line x1="0" y1="0" x2="600" y2="800" stroke="#4A90D9" stroke-width="0.3"/&gt;</p>
+<p class="p1">      &lt;line x1="600" y1="0" x2="0" y2="800" stroke="#4A90D9" stroke-width="0.3"/&gt;</p>
+<p class="p1">    &lt;/svg&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">  &lt;div class="hero-content"&gt;</p>
+<p class="p1">    &lt;div class="hero-eyebrow"&gt;</p>
+<p class="p1">      &lt;div class="eyebrow-line"&gt;&lt;/div&gt;</p>
+<p class="p1">      &lt;span class="eyebrow-text"&gt;Swiss AI Software · jarox.ai&lt;/span&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;h1&gt;Build smarter.&lt;br&gt;&lt;em&gt;Work faster.&lt;/em&gt;&lt;/h1&gt;</p>
+<p class="p1">    &lt;p class="hero-desc" data-i18n="hero_desc"&gt;Jarox entwickelt AI-gestützte Software für Schweizer KMU — präzise, mehrsprachig und konform mit Schweizer Standards.&lt;/p&gt;</p>
+<p class="p1">    &lt;div class="hero-ctas"&gt;</p>
+<p class="p1">      &lt;a href="#products" class="btn-primary" data-i18n="hero_cta1"&gt;Produkte entdecken <span class="s2">→</span>&lt;/a&gt;</p>
+<p class="p1">      &lt;a href="#contact" class="btn-outline" data-i18n="hero_cta2"&gt;Kontakt&lt;/a&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- TICKER --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="ticker"&gt;</p>
+<p class="p1">  &lt;div class="ticker-inner"&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Swiss AI Software&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;DE · FR · IT · EN&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Swiss QR Standard&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;DSG Konform&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Precision Engineering&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Mobile First&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Jarox.ai&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Swiss AI Software&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;DE · FR · IT · EN&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Swiss QR Standard&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;DSG Konform&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Precision Engineering&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Mobile First&lt;/span&gt;</p>
+<p class="p1">    &lt;span class="ticker-item"&gt;&lt;span class="ticker-dot"&gt;&lt;/span&gt;Jarox.ai&lt;/span&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- PRODUCTS --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section id="products"&gt;</p>
+<p class="p1">  &lt;div class="label reveal" data-i18n="products_label"&gt;Produkte&lt;/div&gt;</p>
+<p class="p1">  &lt;h2 class="reveal" data-i18n="products_title"&gt;Software mit Wirkung.&lt;/h2&gt;</p>
+<p class="p1">  &lt;p class="sub reveal" data-i18n="products_sub"&gt;Jede App löst ein konkretes Problem — ohne Overhead, direkt einsetzbar.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">  &lt;div class="product-hero reveal"&gt;</p>
+<p class="p1">    &lt;div class="product-main"&gt;</p>
+<p class="p1">      &lt;div class="product-badge" data-i18n="product_badge"&gt;Live · verfügbar&lt;/div&gt;</p>
+<p class="p1">      &lt;h3&gt;BauAbnahme&lt;/h3&gt;</p>
+<p class="p1">      &lt;p data-i18n="product_desc"&gt;Die digitale Handwerker-App für die Schweiz. Rapporte, Offerten und Rechnungen direkt auf der Baustelle — Schweizer QR-Rechnung inklusive.&lt;/p&gt;</p>
+<p class="p1">      &lt;div class="features-list"&gt;</p>
+<p class="p1">        &lt;span class="feature-item" data-i18n="feat1"&gt;Rapport digital&lt;/span&gt;</p>
+<p class="p1">        &lt;span class="feature-item" data-i18n="feat2"&gt;Offerten erstellen&lt;/span&gt;</p>
+<p class="p1">        &lt;span class="feature-item" data-i18n="feat3"&gt;QR-Rechnung CH&lt;/span&gt;</p>
+<p class="p1">        &lt;span class="feature-item" data-i18n="feat4"&gt;Mahnung senden&lt;/span&gt;</p>
+<p class="p1">        &lt;span class="feature-item" data-i18n="feat5"&gt;Digitale Signatur&lt;/span&gt;</p>
+<p class="p1">        &lt;span class="feature-item"&gt;DE / FR / IT / EN&lt;/span&gt;</p>
+<p class="p1">      &lt;/div&gt;</p>
+<p class="p1">      &lt;a href="https://www.bauabnahme.app" target="_blank" class="product-link"&gt;bauabnahme.app <span class="s1">↗</span>&lt;/a&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="product-visual"&gt;</p>
+<p class="p1">      &lt;div class="mockup"&gt;</p>
+<p class="p1">        &lt;div class="mockup-bar"&gt;</p>
+<p class="p1">          &lt;div class="mockup-dot" style="background:#4A90D9;opacity:0.6"&gt;&lt;/div&gt;</p>
+<p class="p1">          &lt;div class="mockup-dot" style="background:#4A90D9;opacity:0.3"&gt;&lt;/div&gt;</p>
+<p class="p1">          &lt;div class="mockup-dot" style="background:#4A90D9;opacity:0.15"&gt;&lt;/div&gt;</p>
+<p class="p1">        &lt;/div&gt;</p>
+<p class="p1">        &lt;div class="mockup-row accent"&gt;&lt;/div&gt;</p>
+<p class="p1">        &lt;div class="mockup-row silver"&gt;&lt;/div&gt;</p>
+<p class="p1">        &lt;div class="mockup-row short"&gt;&lt;/div&gt;</p>
+<p class="p1">        &lt;div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;"&gt;</p>
+<p class="p1">          &lt;div class="mockup-card"&gt;</p>
+<p class="p1">            &lt;div class="mockup-num"&gt;24&lt;/div&gt;</p>
+<p class="p1">            &lt;div class="mockup-lbl" data-i18n="mock1"&gt;Rapporte&lt;/div&gt;</p>
+<p class="p1">          &lt;/div&gt;</p>
+<p class="p1">          &lt;div class="mockup-card"&gt;</p>
+<p class="p1">            &lt;div class="mockup-num"&gt;CHF 18k&lt;/div&gt;</p>
+<p class="p1">            &lt;div class="mockup-lbl" data-i18n="mock2"&gt;Ausstehend&lt;/div&gt;</p>
+<p class="p1">          &lt;/div&gt;</p>
+<p class="p1">        &lt;/div&gt;</p>
+<p class="p1">        &lt;div class="mockup-row" style="margin-top:16px;background:rgba(74,144,217,0.2);"&gt;&lt;/div&gt;</p>
+<p class="p1">        &lt;div class="mockup-row short" style="background:rgba(200,214,232,0.08);"&gt;&lt;/div&gt;</p>
+<p class="p1">      &lt;/div&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">  &lt;div class="upcoming-grid reveal"&gt;</p>
+<p class="p1">    &lt;div class="upcoming-card"&gt;</p>
+<p class="p1">      &lt;div class="soon-tag" data-i18n="soon"&gt;Bald&lt;/div&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="up1_title"&gt;Weitere Apps&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="up1_desc"&gt;Jarox entwickelt kontinuierlich neue AI-Lösungen für Schweizer KMU.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="upcoming-card"&gt;</p>
+<p class="p1">      &lt;div class="soon-tag" data-i18n="request"&gt;Anfrage&lt;/div&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="up2_title"&gt;Custom Development&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="up2_desc"&gt;Du hast eine Idee die eine App lösen könnte? Lass uns sprechen.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- MISSION --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section id="mission" style="background:var(--navy);border-top:1px solid var(--border2);"&gt;</p>
+<p class="p1">  &lt;div class="label reveal" data-i18n="mission_label"&gt;Mission&lt;/div&gt;</p>
+<p class="p1">  &lt;h2 class="reveal" data-i18n="mission_title"&gt;Präzision trifft Innovation.&lt;/h2&gt;</p>
+<p class="p1">  &lt;p class="sub reveal" data-i18n="mission_sub"&gt;Wir bauen Software die funktioniert — für echte Menschen mit echten Problemen.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">  &lt;div class="values reveal"&gt;</p>
+<p class="p1">    &lt;div class="value"&gt;</p>
+<p class="p1">      &lt;div class="value-num"&gt;01&lt;/div&gt;</p>
+<p class="p1">      &lt;span class="value-icon"&gt;<span class="s3">🎯</span>&lt;/span&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="v1_title"&gt;Fokus&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="v1_desc"&gt;Keine Feature-Overload. Jede App löst ein spezifisches Problem präzise.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="value"&gt;</p>
+<p class="p1">      &lt;div class="value-num"&gt;02&lt;/div&gt;</p>
+<p class="p1">      &lt;span class="value-icon"&gt;<span class="s3">🇨🇭</span>&lt;/span&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="v2_title"&gt;Swiss Made&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="v2_desc"&gt;Entwickelt für die Schweiz — 4 Sprachen, lokale Standards, Swiss Quality.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="value"&gt;</p>
+<p class="p1">      &lt;div class="value-num"&gt;03&lt;/div&gt;</p>
+<p class="p1">      &lt;span class="value-icon"&gt;<span class="s3">⚡</span>&lt;/span&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="v3_title"&gt;Speed&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="v3_desc"&gt;Sofort einsetzbar. Keine langen Einführungen. Produktiv ab Tag eins.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="value"&gt;</p>
+<p class="p1">      &lt;div class="value-num"&gt;04&lt;/div&gt;</p>
+<p class="p1">      &lt;span class="value-icon"&gt;<span class="s3">🔒</span>&lt;/span&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="v4_title"&gt;Privacy&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="v4_desc"&gt;Daten bleiben in der EU. DSG-konform. Sicherheit ist kein Kompromiss.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- CONTACT --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section id="contact"&gt;</p>
+<p class="p1">  &lt;div class="label reveal" data-i18n="contact_label"&gt;Kontakt&lt;/div&gt;</p>
+<p class="p1">  &lt;h2 class="reveal" data-i18n="contact_title"&gt;Sprechen wir.&lt;/h2&gt;</p>
+<p class="p1">  &lt;p class="sub reveal" data-i18n="contact_sub"&gt;Fragen, Partnerschaftsanfragen oder einfach Hallo — wir antworten schnell.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">  &lt;div class="form reveal"&gt;</p>
+<p class="p1">    &lt;div class="field"&gt;</p>
+<p class="p1">      &lt;label data-i18n="form_name"&gt;Name&lt;/label&gt;</p>
+<p class="p1">      &lt;input type="text" data-i18n-placeholder="form_name_ph" placeholder="Dein Name"&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="field"&gt;</p>
+<p class="p1">      &lt;label data-i18n="form_email"&gt;E-Mail&lt;/label&gt;</p>
+<p class="p1">      &lt;input type="email" placeholder="email@example.com"&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="field"&gt;</p>
+<p class="p1">      &lt;label data-i18n="form_msg"&gt;Nachricht&lt;/label&gt;</p>
+<p class="p1">      &lt;textarea data-i18n-placeholder="form_msg_ph" placeholder="Wie können wir helfen?"&gt;&lt;/textarea&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;button class="btn-primary" style="width:100%;max-width:560px;justify-content:center;" data-i18n="form_send"&gt;Senden <span class="s2">→</span>&lt;/button&gt;</p>
+<p class="p1">    &lt;p class="form-notice" data-i18n="form_notice"&gt;Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.&lt;/p&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- FOOTER --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;footer&gt;</p>
+<p class="p1">  &lt;div class="footer-logo"&gt;JAROX&lt;/div&gt;</p>
+<p class="p1">  &lt;div class="footer-mid"&gt;© 2026 Jarox · Meierskappel, Schweiz&lt;/div&gt;</p>
+<p class="p1">  &lt;ul class="footer-links"&gt;</p>
+<p class="p1">    &lt;li&gt;&lt;a href="https://www.bauabnahme.app" target="_blank"&gt;BauAbnahme&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1">    &lt;li&gt;&lt;a onclick="openModal('agb')" data-i18n="footer_agb"&gt;AGB&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1">    &lt;li&gt;&lt;a onclick="openModal('datenschutz')" data-i18n="footer_privacy"&gt;Datenschutz&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1">    &lt;li&gt;&lt;a onclick="openModal('impressum')" data-i18n="footer_imprint"&gt;Impressum&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1">  &lt;/ul&gt;</p>
+<p class="p1">&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- MODALS --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="modal-overlay" id="modal-agb"&gt;</p>
+<p class="p1">  &lt;div class="modal"&gt;</p>
+<p class="p1">    &lt;button class="modal-close" onclick="closeModal('agb')"&gt;<span class="s4">✕</span>&lt;/button&gt;</p>
+<p class="p1">    &lt;h3 data-i18n="agb_title"&gt;Allgemeine Geschäftsbedingungen&lt;/h3&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="agb_s1_title"&gt;1. Geltungsbereich&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="agb_s1"&gt;Diese AGB gelten für alle Leistungen von Jarox (Meierskappel, Schweiz) gegenüber Nutzern der Software unter jarox.ai und bauabnahme.app.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="agb_s2_title"&gt;2. Leistungen&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="agb_s2"&gt;Jarox stellt Software-as-a-Service (SaaS) Lösungen für Schweizer Unternehmen bereit. Die Leistungen werden online erbracht.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="agb_s3_title"&gt;3. Abonnements &amp; Preise&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="agb_s3"&gt;Die aktuellen Preise sind auf den jeweiligen Produktseiten ersichtlich. Kündigung jederzeit zum Monatsende möglich.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="agb_s4_title"&gt;4. Haftung&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="agb_s4"&gt;Haftung für leichte Fahrlässigkeit ist ausgeschlossen. Es gilt Schweizer Recht. Gerichtsstand ist Luzern.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="agb_s5_title"&gt;5. Datenschutz&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="agb_s5"&gt;Die Bearbeitung von Personendaten erfolgt gemäss unserer Datenschutzerklärung und dem Schweizer DSG.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;p style="font-size:12px;color:var(--muted);margin-top:24px;" data-i18n="agb_date"&gt;Stand: Mai 2026&lt;/p&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="modal-overlay" id="modal-datenschutz"&gt;</p>
+<p class="p1">  &lt;div class="modal"&gt;</p>
+<p class="p1">    &lt;button class="modal-close" onclick="closeModal('datenschutz')"&gt;<span class="s4">✕</span>&lt;/button&gt;</p>
+<p class="p1">    &lt;h3 data-i18n="priv_title"&gt;Datenschutzerklärung&lt;/h3&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="priv_s1_title"&gt;Verantwortliche Stelle&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="priv_s1"&gt;Jarox, Seilerhof 9, 6344 Meierskappel, Schweiz · ask@jarox.ai&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="priv_s2_title"&gt;Erhobene Daten&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="priv_s2"&gt;Wir erheben E-Mail-Adresse, Firmendaten, Kundendaten, Rapporte, Rechnungen und Kontaktanfragen. Keine Weitergabe an Dritte zu Werbezwecken.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="priv_s3_title"&gt;Dienstleister&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="priv_s3"&gt;Supabase (EU), Vercel, Stripe, Sentry — alle DSGVO-konform. Daten verbleiben in der EU.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="priv_s4_title"&gt;Ihre Rechte (Art. 25 DSG)&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="priv_s4"&gt;Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten. Anfragen an: ask@jarox.ai&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="priv_s5_title"&gt;Cookies&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="priv_s5"&gt;Diese Website verwendet keine Tracking-Cookies. Nur technisch notwendige Session-Daten werden gespeichert.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;p style="font-size:12px;color:var(--muted);margin-top:24px;" data-i18n="priv_date"&gt;Stand: Mai 2026&lt;/p&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="modal-overlay" id="modal-impressum"&gt;</p>
+<p class="p1">  &lt;div class="modal"&gt;</p>
+<p class="p1">    &lt;button class="modal-close" onclick="closeModal('impressum')"&gt;<span class="s4">✕</span>&lt;/button&gt;</p>
+<p class="p1">    &lt;h3 data-i18n="imp_title"&gt;Impressum&lt;/h3&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="imp_s1_title"&gt;Anbieter&lt;/h4&gt;</p>
+<p class="p1">      &lt;p&gt;Jarox&lt;br&gt;Seilerhof 9&lt;br&gt;6344 Meierskappel&lt;br&gt;Schweiz&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="imp_s2_title"&gt;Kontakt&lt;/h4&gt;</p>
+<p class="p1">      &lt;p&gt;ask@jarox.ai&lt;br&gt;www.jarox.ai&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="imp_s3_title"&gt;Urheberrecht&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="imp_s3"&gt;Alle Rechte vorbehalten. Inhalte dürfen ohne ausdrückliche Genehmigung nicht vervielfältigt werden.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;div class="modal-section"&gt;</p>
+<p class="p1">      &lt;h4 data-i18n="imp_s4_title"&gt;Haftungsausschluss&lt;/h4&gt;</p>
+<p class="p1">      &lt;p data-i18n="imp_s4"&gt;Für externe Links übernimmt Jarox keine Haftung. Es gilt Schweizer Recht, Gerichtsstand Luzern.&lt;/p&gt;</p>
+<p class="p1">    &lt;/div&gt;</p>
+<p class="p1">    &lt;p style="font-size:12px;color:var(--muted);margin-top:24px;" data-i18n="imp_date"&gt;Stand: Mai 2026&lt;/p&gt;</p>
+<p class="p1">  &lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const i18n = {</p>
+<p class="p1">  de: {</p>
+<p class="p1">    nav_products: 'Produkte', nav_mission: 'Mission', nav_contact: 'Kontakt',</p>
+<p class="p1">    hero_desc: 'Jarox entwickelt AI-gestützte Software für Schweizer KMU — präzise, mehrsprachig und konform mit Schweizer Standards.',</p>
+<p class="p1">    hero_cta1: 'Produkte entdecken <span class="s2">→</span>', hero_cta2: 'Kontakt',</p>
+<p class="p1">    products_label: 'Produkte', products_title: 'Software mit Wirkung.', products_sub: 'Jede App löst ein konkretes Problem — ohne Overhead, direkt einsetzbar.',</p>
+<p class="p1">    product_badge: 'Live · verfügbar', product_desc: 'Die digitale Handwerker-App für die Schweiz. Rapporte, Offerten und Rechnungen direkt auf der Baustelle — Schweizer QR-Rechnung inklusive.',</p>
+<p class="p1">    feat1: 'Rapport digital', feat2: 'Offerten erstellen', feat3: 'QR-Rechnung CH', feat4: 'Mahnung senden', feat5: 'Digitale Signatur',</p>
+<p class="p1">    mock1: 'Rapporte', mock2: 'Ausstehend', soon: 'Bald', request: 'Anfrage',</p>
+<p class="p1">    up1_title: 'Weitere Apps', up1_desc: 'Jarox entwickelt kontinuierlich neue AI-Lösungen für Schweizer KMU.',</p>
+<p class="p1">    up2_title: 'Custom Development', up2_desc: 'Du hast eine Idee die eine App lösen könnte? Lass uns sprechen.',</p>
+<p class="p1">    mission_label: 'Mission', mission_title: 'Präzision trifft Innovation.', mission_sub: 'Wir bauen Software die funktioniert — für echte Menschen mit echten Problemen.',</p>
+<p class="p1">    v1_title: 'Fokus', v1_desc: 'Keine Feature-Overload. Jede App löst ein spezifisches Problem präzise.',</p>
+<p class="p1">    v2_title: 'Swiss Made', v2_desc: 'Entwickelt für die Schweiz — 4 Sprachen, lokale Standards.',</p>
+<p class="p1">    v3_title: 'Speed', v3_desc: 'Sofort einsetzbar. Keine langen Einführungen. Produktiv ab Tag eins.',</p>
+<p class="p1">    v4_title: 'Privacy', v4_desc: 'Daten bleiben in der EU. DSG-konform. Sicherheit ist kein Kompromiss.',</p>
+<p class="p1">    contact_label: 'Kontakt', contact_title: 'Sprechen wir.', contact_sub: 'Fragen, Partnerschaftsanfragen oder einfach Hallo — wir antworten schnell.',</p>
+<p class="p1">    form_name: 'Name', form_name_ph: 'Dein Name', form_email: 'E-Mail', form_msg: 'Nachricht', form_msg_ph: 'Wie können wir helfen?',</p>
+<p class="p1">    form_send: 'Senden <span class="s2">→</span>', form_notice: 'Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.',</p>
+<p class="p1">    footer_agb: 'AGB', footer_privacy: 'Datenschutz', footer_imprint: 'Impressum',</p>
+<p class="p1">    agb_title: 'Allgemeine Geschäftsbedingungen', agb_s1_title: '1. Geltungsbereich', agb_s1: 'Diese AGB gelten für alle Leistungen von Jarox (Meierskappel, Schweiz) gegenüber Nutzern der Software unter jarox.ai und bauabnahme.app.',</p>
+<p class="p1">    agb_s2_title: '2. Leistungen', agb_s2: 'Jarox stellt Software-as-a-Service (SaaS) Lösungen für Schweizer Unternehmen bereit.',</p>
+<p class="p1">    agb_s3_title: '3. Abonnements &amp; Preise', agb_s3: 'Die aktuellen Preise sind auf den jeweiligen Produktseiten ersichtlich. Kündigung jederzeit zum Monatsende.',</p>
+<p class="p1">    agb_s4_title: '4. Haftung', agb_s4: 'Haftung für leichte Fahrlässigkeit ist ausgeschlossen. Es gilt Schweizer Recht. Gerichtsstand ist Luzern.',</p>
+<p class="p1">    agb_s5_title: '5. Datenschutz', agb_s5: 'Die Bearbeitung von Personendaten erfolgt gemäss unserer Datenschutzerklärung und dem Schweizer DSG.',</p>
+<p class="p1">    agb_date: 'Stand: Mai 2026',</p>
+<p class="p1">    priv_title: 'Datenschutzerklärung', priv_s1_title: 'Verantwortliche Stelle', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Schweiz · ask@jarox.ai',</p>
+<p class="p1">    priv_s2_title: 'Erhobene Daten', priv_s2: 'Wir erheben E-Mail-Adresse, Firmendaten und Kontaktanfragen. Keine Weitergabe an Dritte zu Werbezwecken.',</p>
+<p class="p1">    priv_s3_title: 'Dienstleister', priv_s3: 'Supabase (EU), Vercel, Stripe, Sentry — alle DSGVO-konform.',</p>
+<p class="p1">    priv_s4_title: 'Ihre Rechte (Art. 25 DSG)', priv_s4: 'Auskunft, Berichtigung und Löschung: ask@jarox.ai',</p>
+<p class="p1">    priv_s5_title: 'Cookies', priv_s5: 'Keine Tracking-Cookies. Nur technisch notwendige Session-Daten.', priv_date: 'Stand: Mai 2026',</p>
+<p class="p1">    imp_title: 'Impressum', imp_s1_title: 'Anbieter', imp_s2_title: 'Kontakt', imp_s3_title: 'Urheberrecht', imp_s3: 'Alle Rechte vorbehalten.',</p>
+<p class="p1">    imp_s4_title: 'Haftungsausschluss', imp_s4: 'Für externe Links übernimmt Jarox keine Haftung. Gerichtsstand Luzern.', imp_date: 'Stand: Mai 2026'</p>
+<p class="p1">  },</p>
+<p class="p1">  en: {</p>
+<p class="p1">    nav_products: 'Products', nav_mission: 'Mission', nav_contact: 'Contact',</p>
+<p class="p1">    hero_desc: 'Jarox builds AI-powered software for Swiss SMEs — precise, multilingual and compliant with Swiss standards.',</p>
+<p class="p1">    hero_cta1: 'Discover products <span class="s2">→</span>', hero_cta2: 'Contact',</p>
+<p class="p1">    products_label: 'Products', products_title: 'Software that works.', products_sub: 'Every app solves a specific problem — no overhead, ready to use.',</p>
+<p class="p1">    product_badge: 'Live · available', product_desc: 'The digital app for Swiss tradespeople. Reports, quotes and invoices directly on site — Swiss QR invoice included.',</p>
+<p class="p1">    feat1: 'Digital reports', feat2: 'Create quotes', feat3: 'Swiss QR invoice', feat4: 'Send reminders', feat5: 'Digital signature',</p>
+<p class="p1">    mock1: 'Reports', mock2: 'Outstanding', soon: 'Soon', request: 'Request',</p>
+<p class="p1">    up1_title: 'More apps', up1_desc: 'Jarox continuously develops new AI solutions for Swiss SMEs.',</p>
+<p class="p1">    up2_title: 'Custom development', up2_desc: 'Got an idea an app could solve? Let\'s talk.',</p>
+<p class="p1">    mission_label: 'Mission', mission_title: 'Precision meets innovation.', mission_sub: 'We build software that works — for real people with real problems.',</p>
+<p class="p1">    v1_title: 'Focus', v1_desc: 'No feature overload. Each app solves one specific problem precisely.',</p>
+<p class="p1">    v2_title: 'Swiss Made', v2_desc: 'Built for Switzerland — 4 languages, local standards.',</p>
+<p class="p1">    v3_title: 'Speed', v3_desc: 'Ready immediately. No long onboarding. Productive from day one.',</p>
+<p class="p1">    v4_title: 'Privacy', v4_desc: 'Data stays in the EU. DSG-compliant. Security is not a compromise.',</p>
+<p class="p1">    contact_label: 'Contact', contact_title: "Let's talk.", contact_sub: 'Questions, partnership requests or just hello — we respond quickly.',</p>
+<p class="p1">    form_name: 'Name', form_name_ph: 'Your name', form_email: 'Email', form_msg: 'Message', form_msg_ph: 'How can we help?',</p>
+<p class="p1">    form_send: 'Send <span class="s2">→</span>', form_notice: 'Your data is treated confidentially and not shared with third parties.',</p>
+<p class="p1">    footer_agb: 'Terms', footer_privacy: 'Privacy', footer_imprint: 'Imprint',</p>
+<p class="p1">    agb_title: 'Terms &amp; Conditions', agb_s1_title: '1. Scope', agb_s1: 'These terms apply to all services provided by Jarox (Meierskappel, Switzerland) to users of jarox.ai and jarox.ai.',</p>
+<p class="p1">    agb_s2_title: '2. Services', agb_s2: 'Jarox provides Software-as-a-Service (SaaS) solutions for Swiss companies.',</p>
+<p class="p1">    agb_s3_title: '3. Subscriptions &amp; Prices', agb_s3: 'Current prices are shown on the respective product pages. Cancel anytime at month end.',</p>
+<p class="p1">    agb_s4_title: '4. Liability', agb_s4: 'Liability for minor negligence is excluded. Swiss law applies. Jurisdiction is Lucerne.',</p>
+<p class="p1">    agb_s5_title: '5. Privacy', agb_s5: 'Personal data is processed in accordance with our privacy policy and Swiss DSG.',</p>
+<p class="p1">    agb_date: 'As of: May 2026',</p>
+<p class="p1">    priv_title: 'Privacy Policy', priv_s1_title: 'Responsible Party', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Switzerland · ask@jarox.ai',</p>
+<p class="p1">    priv_s2_title: 'Data Collected', priv_s2: 'We collect email addresses, company data and contact requests. No sharing with third parties for advertising.',</p>
+<p class="p1">    priv_s3_title: 'Service Providers', priv_s3: 'Supabase (EU), Vercel, Stripe, Sentry — all GDPR-compliant.',</p>
+<p class="p1">    priv_s4_title: 'Your Rights', priv_s4: 'Access, correction and deletion: ask@jarox.ai',</p>
+<p class="p1">    priv_s5_title: 'Cookies', priv_s5: 'No tracking cookies. Only technically necessary session data.', priv_date: 'As of: May 2026',</p>
+<p class="p1">    imp_title: 'Imprint', imp_s1_title: 'Provider', imp_s2_title: 'Contact', imp_s3_title: 'Copyright', imp_s3: 'All rights reserved.',</p>
+<p class="p1">    imp_s4_title: 'Disclaimer', imp_s4: 'Jarox accepts no liability for external links. Jurisdiction: Lucerne.', imp_date: 'As of: May 2026'</p>
+<p class="p1">  },</p>
+<p class="p1">  fr: {</p>
+<p class="p1">    nav_products: 'Produits', nav_mission: 'Mission', nav_contact: 'Contact',</p>
+<p class="p1">    hero_desc: 'Jarox développe des logiciels propulsés par l\'IA pour les PME suisses — précis, multilingues et conformes aux normes suisses.',</p>
+<p class="p1">    hero_cta1: 'Découvrir les produits <span class="s2">→</span>', hero_cta2: 'Contact',</p>
+<p class="p1">    products_label: 'Produits', products_title: 'Des logiciels efficaces.', products_sub: 'Chaque app résout un problème concret — sans superflu, prête à l\'emploi.',</p>
+<p class="p1">    product_badge: 'En ligne · disponible', product_desc: 'L\'app numérique pour les artisans suisses. Rapports, offres et factures directement sur le chantier — facture QR suisse incluse.',</p>
+<p class="p1">    feat1: 'Rapport numérique', feat2: 'Créer des offres', feat3: 'Facture QR CH', feat4: 'Envoyer rappels', feat5: 'Signature numérique',</p>
+<p class="p1">    mock1: 'Rapports', mock2: 'En attente', soon: 'Bientôt', request: 'Demande',</p>
+<p class="p1">    up1_title: 'Autres apps', up1_desc: 'Jarox développe continuellement de nouvelles solutions IA pour les PME suisses.',</p>
+<p class="p1">    up2_title: 'Développement sur mesure', up2_desc: 'Vous avez une idée qu\'une app pourrait résoudre ? Parlons-en.',</p>
+<p class="p1">    mission_label: 'Mission', mission_title: 'Précision rencontre innovation.', mission_sub: 'Nous construisons des logiciels qui fonctionnent — pour de vraies personnes avec de vrais problèmes.',</p>
+<p class="p1">    v1_title: 'Focus', v1_desc: 'Pas de surcharge de fonctionnalités. Chaque app résout un problème précis.',</p>
+<p class="p1">    v2_title: 'Swiss Made', v2_desc: 'Conçu pour la Suisse — 4 langues, normes locales.',</p>
+<p class="p1">    v3_title: 'Rapidité', v3_desc: 'Opérationnel immédiatement. Pas de longue formation.',</p>
+<p class="p1">    v4_title: 'Confidentialité', v4_desc: 'Données en UE. Conforme DSG. La sécurité n\'est pas un compromis.',</p>
+<p class="p1">    contact_label: 'Contact', contact_title: 'Parlons-en.', contact_sub: 'Questions, demandes de partenariat ou juste bonjour — nous répondons rapidement.',</p>
+<p class="p1">    form_name: 'Nom', form_name_ph: 'Votre nom', form_email: 'E-mail', form_msg: 'Message', form_msg_ph: 'Comment pouvons-nous vous aider?',</p>
+<p class="p1">    form_send: 'Envoyer <span class="s2">→</span>', form_notice: 'Vos données sont traitées confidentiellement et ne sont pas partagées avec des tiers.',</p>
+<p class="p1">    footer_agb: 'CGV', footer_privacy: 'Confidentialité', footer_imprint: 'Mentions légales',</p>
+<p class="p1">    agb_title: 'Conditions Générales de Vente', agb_s1_title: '1. Champ d\'application', agb_s1: 'Ces CGV s\'appliquent à tous les services de Jarox (Meierskappel, Suisse) aux utilisateurs de jarox.ai et jarox.ai.',</p>
+<p class="p1">    agb_s2_title: '2. Services', agb_s2: 'Jarox fournit des solutions SaaS pour les entreprises suisses.',</p>
+<p class="p1">    agb_s3_title: '3. Abonnements &amp; Prix', agb_s3: 'Les prix actuels sont indiqués sur les pages produits. Résiliation possible à tout moment.',</p>
+<p class="p1">    agb_s4_title: '4. Responsabilité', agb_s4: 'La responsabilité pour négligence légère est exclue. Droit suisse applicable. Juridiction: Lucerne.',</p>
+<p class="p1">    agb_s5_title: '5. Protection des données', agb_s5: 'Les données personnelles sont traitées conformément à notre politique de confidentialité et à la LPD suisse.',</p>
+<p class="p1">    agb_date: 'En vigueur: mai 2026',</p>
+<p class="p1">    priv_title: 'Politique de confidentialité', priv_s1_title: 'Responsable', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Suisse · ask@jarox.ai',</p>
+<p class="p1">    priv_s2_title: 'Données collectées', priv_s2: 'Nous collectons adresses e-mail, données d\'entreprise et demandes de contact. Pas de partage à des fins publicitaires.',</p>
+<p class="p1">    priv_s3_title: 'Prestataires', priv_s3: 'Supabase (UE), Vercel, Stripe, Sentry — tous conformes RGPD.',</p>
+<p class="p1">    priv_s4_title: 'Vos droits', priv_s4: 'Accès, rectification et suppression: ask@jarox.ai',</p>
+<p class="p1">    priv_s5_title: 'Cookies', priv_s5: 'Pas de cookies de suivi. Uniquement les données de session nécessaires.', priv_date: 'En vigueur: mai 2026',</p>
+<p class="p1">    imp_title: 'Mentions légales', imp_s1_title: 'Éditeur', imp_s2_title: 'Contact', imp_s3_title: 'Droits d\'auteur', imp_s3: 'Tous droits réservés.',</p>
+<p class="p1">    imp_s4_title: 'Avertissement', imp_s4: 'Jarox n\'assume aucune responsabilité pour les liens externes. Juridiction: Lucerne.', imp_date: 'En vigueur: mai 2026'</p>
+<p class="p1">  },</p>
+<p class="p1">  it: {</p>
+<p class="p1">    nav_products: 'Prodotti', nav_mission: 'Missione', nav_contact: 'Contatto',</p>
+<p class="p1">    hero_desc: 'Jarox sviluppa software basato sull\'IA per le PMI svizzere — preciso, multilingue e conforme agli standard svizzeri.',</p>
+<p class="p1">    hero_cta1: 'Scopri i prodotti <span class="s2">→</span>', hero_cta2: 'Contatto',</p>
+<p class="p1">    products_label: 'Prodotti', products_title: 'Software che funziona.', products_sub: 'Ogni app risolve un problema concreto — senza overhead, pronta all\'uso.',</p>
+<p class="p1">    product_badge: 'Live · disponibile', product_desc: 'L\'app digitale per gli artigiani svizzeri. Rapporti, offerte e fatture direttamente in cantiere — fattura QR svizzera inclusa.',</p>
+<p class="p1">    feat1: 'Rapporto digitale', feat2: 'Creare offerte', feat3: 'Fattura QR CH', feat4: 'Inviare solleciti', feat5: 'Firma digitale',</p>
+<p class="p1">    mock1: 'Rapporti', mock2: 'In attesa', soon: 'Presto', request: 'Richiesta',</p>
+<p class="p1">    up1_title: 'Altre app', up1_desc: 'Jarox sviluppa continuamente nuove soluzioni IA per le PMI svizzere.',</p>
+<p class="p1">    up2_title: 'Sviluppo personalizzato', up2_desc: 'Hai un\'idea che un\'app potrebbe risolvere? Parliamone.',</p>
+<p class="p1">    mission_label: 'Missione', mission_title: 'Precisione incontra innovazione.', mission_sub: 'Costruiamo software che funziona — per persone reali con problemi reali.',</p>
+<p class="p1">    v1_title: 'Focus', v1_desc: 'Nessun sovraccarico di funzionalità. Ogni app risolve un problema specifico.',</p>
+<p class="p1">    v2_title: 'Swiss Made', v2_desc: 'Sviluppato per la Svizzera — 4 lingue, standard locali.',</p>
+<p class="p1">    v3_title: 'Velocità', v3_desc: 'Operativo subito. Nessuna formazione lunga. Produttivo dal primo giorno.',</p>
+<p class="p1">    v4_title: 'Privacy', v4_desc: 'Dati nell\'UE. Conforme DSG. La sicurezza non è un compromesso.',</p>
+<p class="p1">    contact_label: 'Contatto', contact_title: 'Parliamo.', contact_sub: 'Domande, richieste di partnership o semplicemente ciao — rispondiamo rapidamente.',</p>
+<p class="p1">    form_name: 'Nome', form_name_ph: 'Il tuo nome', form_email: 'E-mail', form_msg: 'Messaggio', form_msg_ph: 'Come possiamo aiutarti?',</p>
+<p class="p1">    form_send: 'Invia <span class="s2">→</span>', form_notice: 'I tuoi dati vengono trattati in modo confidenziale e non condivisi con terzi.',</p>
+<p class="p1">    footer_agb: 'CGC', footer_privacy: 'Privacy', footer_imprint: 'Note legali',</p>
+<p class="p1">    agb_title: 'Condizioni Generali', agb_s1_title: '1. Ambito', agb_s1: 'Queste condizioni si applicano a tutti i servizi di Jarox (Meierskappel, Svizzera) agli utenti di jarox.ai e jarox.ai.',</p>
+<p class="p1">    agb_s2_title: '2. Servizi', agb_s2: 'Jarox fornisce soluzioni SaaS per le aziende svizzere.',</p>
+<p class="p1">    agb_s3_title: '3. Abbonamenti &amp; Prezzi', agb_s3: 'I prezzi attuali sono indicati sulle rispettive pagine prodotto. Disdetta possibile in qualsiasi momento.',</p>
+<p class="p1">    agb_s4_title: '4. Responsabilità', agb_s4: 'La responsabilità per negligenza lieve è esclusa. Si applica il diritto svizzero. Foro: Lucerna.',</p>
+<p class="p1">    agb_s5_title: '5. Privacy', agb_s5: 'I dati personali vengono trattati secondo la nostra informativa sulla privacy e la LPD svizzera.',</p>
+<p class="p1">    agb_date: 'In vigore: maggio 2026',</p>
+<p class="p1">    priv_title: 'Informativa sulla privacy', priv_s1_title: 'Responsabile', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Svizzera · ask@jarox.ai',</p>
+<p class="p1">    priv_s2_title: 'Dati raccolti', priv_s2: 'Raccogliamo indirizzi e-mail, dati aziendali e richieste di contatto. Nessuna condivisione per scopi pubblicitari.',</p>
+<p class="p1">    priv_s3_title: 'Fornitori di servizi', priv_s3: 'Supabase (UE), Vercel, Stripe, Sentry — tutti conformi GDPR.',</p>
+<p class="p1">    priv_s4_title: 'I tuoi diritti', priv_s4: 'Accesso, rettifica e cancellazione: ask@jarox.ai',</p>
+<p class="p1">    priv_s5_title: 'Cookie', priv_s5: 'Nessun cookie di tracciamento. Solo dati di sessione tecnici necessari.', priv_date: 'In vigore: maggio 2026',</p>
+<p class="p1">    imp_title: 'Note legali', imp_s1_title: 'Editore', imp_s2_title: 'Contatto', imp_s3_title: 'Copyright', imp_s3: 'Tutti i diritti riservati.',</p>
+<p class="p1">    imp_s4_title: 'Esclusione di responsabilità', imp_s4: 'Jarox non si assume responsabilità per link esterni. Foro: Lucerna.', imp_date: 'In vigore: maggio 2026'</p>
+<p class="p1">  }</p>
+<p class="p1">};</p>
+<p class="p2"><br></p>
+<p class="p1">let currentLang = 'de';</p>
+<p class="p2"><br></p>
+<p class="p1">function setLang(lang) {</p>
+<p class="p1">  currentLang = lang;</p>
+<p class="p1">  document.querySelectorAll('.lang-btn').forEach(b =&gt; b.classList.toggle('active', b.textContent === lang.toUpperCase()));</p>
+<p class="p1">  document.querySelectorAll('[data-i18n]').forEach(el =&gt; {</p>
+<p class="p1">    const key = el.getAttribute('data-i18n');</p>
+<p class="p1">    if (i18n[lang][key]) el.textContent = i18n[lang][key];</p>
+<p class="p1">  });</p>
+<p class="p1">  document.querySelectorAll('[data-i18n-placeholder]').forEach(el =&gt; {</p>
+<p class="p1">    const key = el.getAttribute('data-i18n-placeholder');</p>
+<p class="p1">    if (i18n[lang][key]) el.placeholder = i18n[lang][key];</p>
+<p class="p1">  });</p>
+<p class="p1">  document.documentElement.lang = lang;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function openModal(id) {</p>
+<p class="p1">  document.getElementById('modal-' + id).classList.add('open');</p>
+<p class="p1">  document.body.style.overflow = 'hidden';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function closeModal(id) {</p>
+<p class="p1">  document.getElementById('modal-' + id).classList.remove('open');</p>
+<p class="p1">  document.body.style.overflow = '';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Close modal on overlay click</p>
+<p class="p1">document.querySelectorAll('.modal-overlay').forEach(overlay =&gt; {</p>
+<p class="p1">  overlay.addEventListener('click', e =&gt; {</p>
+<p class="p1">    if (e.target === overlay) {</p>
+<p class="p1">      overlay.classList.remove('open');</p>
+<p class="p1">      document.body.style.overflow = '';</p>
+<p class="p1">    }</p>
+<p class="p1">  });</p>
+<p class="p1">});</p>
+<p class="p2"><br></p>
+<p class="p1">// Scroll reveal</p>
+<p class="p1">const observer = new IntersectionObserver(entries =&gt; {</p>
+<p class="p1">  entries.forEach((e, i) =&gt; {</p>
+<p class="p1">    if (e.isIntersecting) setTimeout(() =&gt; e.target.classList.add('visible'), i * 80);</p>
+<p class="p1">  });</p>
+<p class="p1">}, { threshold: 0.1 });</p>
+<p class="p2"><br></p>
+<p class="p1">document.querySelectorAll('.reveal').forEach(el =&gt; observer.observe(el));</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
