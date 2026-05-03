@@ -1,1195 +1,385 @@
 <!DOCTYPE html>
- 
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jarox — Swiss AI Software</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-:root {
-–navy: #050C1A;
-–navy2: #080F1E;
-–navy3: #0D1526;
-–navy4: #111C30;
-–silver: #C8D6E8;
-–platinum: #E8EEF5;
-–accent: #4A90D9;
-–accent-dim: rgba(74,144,217,0.12);
-–text: #D4E0EE;
-–muted: #4A5A72;
-–border: rgba(200,214,232,0.1);
-–border2: rgba(200,214,232,0.06);
-}
- 
-html { scroll-behavior: smooth; }
- 
-body {
-background: var(–navy);
-color: var(–text);
-font-family: ‘Space Grotesk’, sans-serif;
-font-size: 16px;
-line-height: 1.6;
-overflow-x: hidden;
-}
- 
-body::after {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 512 512’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.75’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.025’/%3E%3C/svg%3E”);
-pointer-events: none;
-z-index: 998;
-}
- 
-/* NAV */
-nav {
-position: fixed;
-top: 0; left: 0; right: 0;
-z-index: 100;
-padding: 0 56px;
-height: 72px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 1px solid var(–border2);
-background: rgba(5,12,26,0.88);
-backdrop-filter: blur(20px);
-}
- 
-.nav-logo {
-font-family: ‘Space Mono’, monospace;
-font-size: 16px;
-font-weight: 700;
-color: var(–platinum);
-letter-spacing: 0.2em;
-text-decoration: none;
-display: flex;
-align-items: center;
-gap: 10px;
-}
- 
-.nav-logo::before {
-content: ‘’;
-width: 8px; height: 8px;
-background: var(–accent);
-border-radius: 50%;
-box-shadow: 0 0 8px var(–accent);
-}
- 
-.nav-right {
-display: flex;
-align-items: center;
-gap: 32px;
-}
- 
-.nav-links {
-display: flex;
-gap: 28px;
-list-style: none;
-}
- 
-.nav-links a {
-color: var(–muted);
-text-decoration: none;
-font-size: 13px;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-transition: color 0.2s;
-}
- 
-.nav-links a:hover { color: var(–silver); }
- 
-/* Lang switcher */
-.lang-switcher {
-display: flex;
-gap: 4px;
-}
- 
-.lang-btn {
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 0.05em;
-color: var(–muted);
-background: transparent;
-border: 1px solid transparent;
-padding: 4px 8px;
-border-radius: 3px;
-cursor: pointer;
-transition: all 0.15s;
-}
- 
-.lang-btn:hover { color: var(–silver); }
-.lang-btn.active {
-color: var(–accent);
-border-color: rgba(74,144,217,0.3);
-background: rgba(74,144,217,0.08);
-}
- 
-.nav-cta {
-font-family: ‘Space Mono’, monospace;
-font-size: 12px;
-font-weight: 700;
-letter-spacing: 0.08em;
-color: var(–navy) !important;
-background: var(–silver);
-padding: 8px 18px;
-border-radius: 4px;
-text-decoration: none;
-transition: all 0.2s;
-}
- 
-.nav-cta:hover { background: var(–platinum); }
- 
-/* HERO */
-.hero {
-min-height: 100vh;
-padding: 140px 56px 100px;
-position: relative;
-overflow: hidden;
-display: flex;
-align-items: center;
-}
- 
-.hero-mesh {
-position: absolute; inset: 0;
-background:
-radial-gradient(ellipse 70% 60% at 80% 40%, rgba(74,144,217,0.07) 0%, transparent 60%),
-radial-gradient(ellipse 50% 70% at 10% 70%, rgba(74,144,217,0.04) 0%, transparent 55%);
-}
- 
-.hero-dots {
-position: absolute; inset: 0;
-background-image: radial-gradient(circle, rgba(200,214,232,0.12) 1px, transparent 1px);
-background-size: 40px 40px;
-mask-image: radial-gradient(ellipse 90% 80% at 60% 40%, black 20%, transparent 80%);
-}
- 
-.hero-lines {
-position: absolute;
-right: 0; top: 0; bottom: 0;
-width: 50%;
-overflow: hidden;
-}
- 
-.hero-lines svg {
-position: absolute;
-right: 0; top: 50%;
-transform: translateY(-50%);
-opacity: 0.08;
-width: 100%;
-}
- 
-.hero-content { position: relative; max-width: 760px; }
- 
-.hero-eyebrow {
-display: flex;
-align-items: center;
-gap: 12px;
-margin-bottom: 36px;
-animation: fadeUp 1s ease both;
-}
- 
-.eyebrow-line { width: 32px; height: 1px; background: var(–accent); }
- 
-.eyebrow-text {
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-letter-spacing: 0.2em;
-color: var(–accent);
-text-transform: uppercase;
-}
- 
-h1 {
-font-size: clamp(48px, 6.5vw, 88px);
-font-weight: 700;
-line-height: 1.0;
-letter-spacing: -0.02em;
-margin-bottom: 32px;
-animation: fadeUp 1s 0.1s ease both;
-color: var(–platinum);
-}
- 
-h1 em {
-font-style: normal;
-color: transparent;
--webkit-text-stroke: 1px rgba(200,214,232,0.4);
-display: block;
-}
- 
-.hero-desc {
-font-size: 18px;
-color: var(–muted);
-font-weight: 300;
-max-width: 500px;
-line-height: 1.8;
-margin-bottom: 52px;
-animation: fadeUp 1s 0.2s ease both;
-}
- 
-.hero-ctas {
-display: flex;
-gap: 14px;
-align-items: center;
-animation: fadeUp 1s 0.3s ease both;
-}
- 
-.btn-primary {
-background: var(–silver);
-color: var(–navy);
-border: none;
-padding: 13px 28px;
-border-radius: 4px;
-font-size: 14px;
-font-weight: 600;
-font-family: ‘Space Grotesk’, sans-serif;
-cursor: pointer;
-text-decoration: none;
-letter-spacing: 0.02em;
-transition: all 0.2s;
-display: inline-flex;
-align-items: center;
-gap: 8px;
-}
- 
-.btn-primary:hover { background: var(–platinum); transform: translateY(-1px); }
- 
-.btn-outline {
-background: transparent;
-color: var(–silver);
-border: 1px solid var(–border);
-padding: 13px 28px;
-border-radius: 4px;
-font-size: 14px;
-font-weight: 400;
-font-family: ‘Space Grotesk’, sans-serif;
-cursor: pointer;
-text-decoration: none;
-transition: all 0.2s;
-}
- 
-.btn-outline:hover { border-color: rgba(200,214,232,0.3); background: rgba(200,214,232,0.04); }
- 
-/* TICKER */
-.ticker {
-border-top: 1px solid var(–border2);
-border-bottom: 1px solid var(–border2);
-padding: 14px 0;
-overflow: hidden;
-background: var(–navy2);
-}
- 
-.ticker-inner {
-display: flex;
-gap: 60px;
-width: max-content;
-animation: ticker 22s linear infinite;
-white-space: nowrap;
-}
- 
-.ticker-item {
-display: flex;
-align-items: center;
-gap: 10px;
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(–muted);
-}
- 
-.ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(–accent); opacity: 0.6; }
- 
-@keyframes ticker {
-from { transform: translateX(0); }
-to { transform: translateX(-50%); }
-}
- 
-/* SECTIONS */
-section { padding: 100px 56px; }
- 
-.label {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-letter-spacing: 0.25em;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: 24px;
-display: flex;
-align-items: center;
-gap: 12px;
-}
- 
-.label::before { content: ‘’; display: inline-block; width: 20px; height: 1px; background: var(–accent); }
- 
-h2 {
-font-size: clamp(28px, 3.5vw, 44px);
-font-weight: 600;
-letter-spacing: -0.01em;
-line-height: 1.15;
-color: var(–platinum);
-margin-bottom: 18px;
-}
- 
-.sub {
-font-size: 16px;
-color: var(–muted);
-font-weight: 300;
-max-width: 440px;
-line-height: 1.8;
-margin-bottom: 60px;
-}
- 
-/* PRODUCTS */
-#products { background: var(–navy2); border-top: 1px solid var(–border2); }
- 
-.product-hero {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 2px;
-background: var(–border2);
-border: 1px solid var(–border2);
-border-radius: 8px 8px 0 0;
-overflow: hidden;
-}
- 
-.product-main {
-background: var(–navy3);
-padding: 52px;
-position: relative;
-overflow: hidden;
-}
- 
-.product-main::after {
-content: ‘’;
-position: absolute;
-top: -40px; right: -40px;
-width: 200px; height: 200px;
-background: radial-gradient(circle, rgba(74,144,217,0.1) 0%, transparent 70%);
-border-radius: 50%;
-}
- 
-.product-visual {
-background: var(–navy4);
-padding: 52px;
-display: flex;
-align-items: center;
-justify-content: center;
-position: relative;
-overflow: hidden;
-}
- 
-.product-visual::before {
-content: ‘’;
-position: absolute; inset: 0;
-background: linear-gradient(135deg, rgba(74,144,217,0.04) 0%, transparent 60%);
-}
- 
-.mockup {
-width: 100%;
-max-width: 280px;
-background: var(–navy);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 20px;
-position: relative;
-z-index: 1;
-}
- 
-.mockup-bar { display: flex; gap: 6px; margin-bottom: 16px; }
-.mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
-.mockup-row { height: 8px; border-radius: 4px; margin-bottom: 8px; background: var(–border); }
-.mockup-row.accent { background: rgba(74,144,217,0.3); width: 60%; }
-.mockup-row.silver { background: rgba(200,214,232,0.15); width: 80%; }
-.mockup-row.short { width: 45%; }
-.mockup-card { background: var(–navy2); border: 1px solid var(–border2); border-radius: 8px; padding: 14px; margin-top: 12px; }
-.mockup-num { font-family: ‘Space Mono’, monospace; font-size: 18px; font-weight: 700; color: var(–silver); margin-bottom: 4px; }
-.mockup-lbl { font-size: 11px; color: var(–muted); letter-spacing: 0.05em; }
- 
-.product-badge {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-letter-spacing: 0.12em;
-text-transform: uppercase;
-color: var(–accent);
-border: 1px solid rgba(74,144,217,0.3);
-padding: 4px 12px;
-border-radius: 2px;
-margin-bottom: 20px;
-}
- 
-.product-badge::before {
-content: ‘’;
-width: 5px; height: 5px;
-border-radius: 50%;
-background: var(–accent);
-box-shadow: 0 0 6px var(–accent);
-animation: pulse 2s infinite;
-}
- 
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
- 
-.product-main h3 {
-font-size: 32px;
-font-weight: 600;
-color: var(–platinum);
-margin-bottom: 12px;
-letter-spacing: -0.01em;
-}
- 
-.product-main p {
-font-size: 15px;
-color: var(–muted);
-font-weight: 300;
-line-height: 1.8;
-margin-bottom: 28px;
-max-width: 380px;
-}
- 
-.features-list {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 10px;
-margin-bottom: 36px;
-}
- 
-.feature-item {
-display: flex;
-align-items: center;
-gap: 8px;
-font-size: 13px;
-color: var(–muted);
-}
- 
-.feature-item::before { content: ‘·’; color: var(–accent); font-size: 18px; line-height: 1; }
- 
-.product-link {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-font-family: ‘Space Mono’, monospace;
-font-size: 12px;
-letter-spacing: 0.08em;
-color: var(–silver);
-text-decoration: none;
-border-bottom: 1px solid var(–border);
-padding-bottom: 2px;
-transition: all 0.2s;
-}
- 
-.product-link:hover { color: var(–platinum); border-color: var(–silver); gap: 12px; }
- 
-.upcoming-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 2px;
-background: var(–border2);
-border: 1px solid var(–border2);
-border-top: none;
-border-radius: 0 0 8px 8px;
-overflow: hidden;
-}
- 
-.upcoming-card {
-background: var(–navy3);
-padding: 36px;
-transition: background 0.2s;
-position: relative;
-}
- 
-.upcoming-card:hover { background: var(–navy4); }
- 
-.upcoming-card h4 { font-size: 18px; font-weight: 500; color: var(–silver); margin-bottom: 8px; }
-.upcoming-card p { font-size: 14px; color: var(–muted); font-weight: 300; line-height: 1.7; }
- 
-.soon-tag {
-position: absolute;
-top: 36px; right: 36px;
-font-family: ‘Space Mono’, monospace;
-font-size: 9px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(–muted);
-border: 1px solid var(–border2);
-padding: 3px 8px;
-border-radius: 2px;
-}
- 
-/* MISSION */
-.values {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 1px;
-background: var(–border2);
-border: 1px solid var(–border2);
-border-radius: 8px;
-overflow: hidden;
-}
- 
-.value { background: var(–navy2); padding: 40px 32px; transition: background 0.2s; }
-.value:hover { background: var(–navy3); }
-.value-num { font-family: ‘Space Mono’, monospace; font-size: 11px; color: var(–muted); letter-spacing: 0.1em; margin-bottom: 20px; }
-.value-icon { font-size: 24px; margin-bottom: 16px; display: block; }
-.value h4 { font-size: 16px; font-weight: 600; color: var(–silver); margin-bottom: 8px; }
-.value p { font-size: 13px; color: var(–muted); font-weight: 300; line-height: 1.7; }
- 
-/* CONTACT */
-#contact { background: var(–navy2); border-top: 1px solid var(–border2); }
- 
-.form {
-max-width: 560px;
-display: flex;
-flex-direction: column;
-gap: 16px;
-}
- 
-.field label {
-display: block;
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(–muted);
-margin-bottom: 8px;
-}
- 
-.field input, .field textarea {
-width: 100%;
-background: var(–navy);
-border: 1px solid var(–border2);
-border-radius: 4px;
-padding: 12px 16px;
-color: var(–text);
-font-family: ‘Space Grotesk’, sans-serif;
-font-size: 14px;
-font-weight: 300;
-outline: none;
-transition: border-color 0.2s;
-}
- 
-.field input:focus, .field textarea:focus { border-color: rgba(74,144,217,0.4); }
-.field textarea { height: 100px; resize: none; }
- 
-.form-notice {
-font-size: 12px;
-color: var(–muted);
-font-weight: 300;
-line-height: 1.6;
-margin-top: 4px;
-}
- 
-/* FOOTER */
-footer {
-padding: 28px 56px;
-border-top: 1px solid var(–border2);
-display: flex;
-justify-content: space-between;
-align-items: center;
-background: var(–navy);
-}
- 
-.footer-logo {
-font-family: ‘Space Mono’, monospace;
-font-size: 13px;
-font-weight: 700;
-color: var(–silver);
-letter-spacing: 0.2em;
-display: flex;
-align-items: center;
-gap: 8px;
-}
- 
-.footer-logo::before { content: ‘’; width: 6px; height: 6px; background: var(–accent); border-radius: 50%; }
- 
-.footer-mid { font-family: ‘Space Mono’, monospace; font-size: 11px; color: var(–muted); }
- 
-.footer-links { display: flex; gap: 24px; list-style: none; }
- 
-.footer-links a {
-font-size: 12px;
-color: var(–muted);
-text-decoration: none;
-letter-spacing: 0.04em;
-cursor: pointer;
-transition: color 0.2s;
-}
- 
-.footer-links a:hover { color: var(–silver); }
- 
-/* MODAL */
-.modal-overlay {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(5,12,26,0.92);
-backdrop-filter: blur(12px);
-z-index: 500;
-align-items: center;
-justify-content: center;
-padding: 24px;
-}
- 
-.modal-overlay.open { display: flex; }
- 
-.modal {
-background: var(–navy3);
-border: 1px solid var(–border);
-border-radius: 8px;
-padding: 48px;
-max-width: 680px;
-width: 100%;
-max-height: 80vh;
-overflow-y: auto;
-position: relative;
-}
- 
-.modal h3 {
-font-family: ‘Space Mono’, monospace;
-font-size: 14px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(–platinum);
-margin-bottom: 28px;
-padding-bottom: 16px;
-border-bottom: 1px solid var(–border2);
-}
- 
-.modal-close {
-position: absolute;
-top: 20px; right: 20px;
-background: transparent;
-border: 1px solid var(–border2);
-color: var(–muted);
-width: 32px; height: 32px;
-border-radius: 4px;
-cursor: pointer;
-font-size: 16px;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.2s;
-}
- 
-.modal-close:hover { border-color: var(–border); color: var(–silver); }
- 
-.modal-section { margin-bottom: 24px; }
- 
-.modal-section h4 {
-font-size: 13px;
-font-weight: 600;
-color: var(–silver);
-margin-bottom: 8px;
-letter-spacing: 0.04em;
-}
- 
-.modal-section p {
-font-size: 13px;
-color: var(–muted);
-font-weight: 300;
-line-height: 1.8;
-}
- 
-/* ANIMATIONS */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
-}
- 
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
- 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-nav { padding: 0 20px; }
-.nav-links { display: none; }
-.hero { padding: 110px 24px 80px; }
-section { padding: 70px 24px; }
-.product-hero, .upcoming-grid { grid-template-columns: 1fr; }
-.values { grid-template-columns: 1fr 1fr; }
-footer { flex-direction: column; gap: 16px; text-align: center; }
-.footer-links { justify-content: center; }
-.modal { padding: 32px 24px; }
-}
-</style>
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarox AI — Swiss Precision Software</title>
+    
+    <!-- SEO / GitHub Preview Tags -->
+    <meta name="description" content="Jarox AI entwickelt präzise, AI-gestützte Softwarelösungen für Schweizer KMU. DSG-konform und mehrsprachig.">
+    <meta property="og:title" content="Jarox AI — Swiss Precision Software">
+    <meta property="og:description" content="Intelligente Automatisierung für das Schweizer Handwerk und Gewerbe.">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #050C1A;
+            --navy2: #080F1E;
+            --navy3: #0D1526;
+            --navy4: #111C30;
+            --silver: #C8D6E8;
+            --platinum: #E8EEF5;
+            --accent: #4A90D9;
+            --accent-dim: rgba(74,144,217,0.12);
+            --text: #D4E0EE;
+            --muted: #4A5A72;
+            --border: rgba(200,214,232,0.1);
+            --border2: rgba(200,214,232,0.06);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--navy);
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Noise Texture Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0 56px;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border2);
+            background: rgba(5,12,26,0.88);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--platinum);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo-dot { color: var(--accent); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--silver); }
+
+        .lang-switcher { display: flex; gap: 4px; }
+
+        .lang-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            color: var(--accent);
+            border-color: rgba(74,144,217,0.3);
+            background: rgba(74,144,217,0.08);
+        }
+
+        .nav-cta {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--navy) !important;
+            background: var(--silver);
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        /* HERO Section */
+        .hero {
+            min-height: 100vh;
+            padding: 140px 56px 100px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-mesh {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 80% 40%, rgba(74,144,217,0.07) 0%, transparent 60%);
+            z-index: -1;
+        }
+
+        .hero-content { position: relative; max-width: 800px; z-index: 2; }
+
+        h1 {
+            font-size: clamp(48px, 6.5vw, 88px);
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 32px;
+            color: var(--platinum);
+        }
+
+        h1 span.accent-text {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(200,214,232,0.4);
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 540px;
+            margin-bottom: 48px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--silver);
+            color: var(--navy);
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover { background: var(--platinum); transform: translateY(-2px); }
+
+        /* Ticker Animation */
+        .ticker {
+            border-y: 1px solid var(--border2);
+            padding: 16px 0;
+            background: var(--navy2);
+            overflow: hidden;
+        }
+
+        .ticker-inner {
+            display: flex;
+            gap: 60px;
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Sections General */
+        section { padding: 120px 56px; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Products Grid */
+        .product-card {
+            background: var(--navy3);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .p-info { padding: 60px; }
+        .p-visual { background: var(--navy4); padding: 40px; display: flex; justify-content: center; align-items: center; }
+
+        /* Form Styling */
+        .field { margin-bottom: 20px; }
+        .field label { display: block; font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; }
+        .field input, .field textarea {
+            width: 100%; background: var(--navy); border: 1px solid var(--border2); padding: 14px; color: white; border-radius: 4px; outline: none;
+        }
+        .field input:focus { border-color: var(--accent); }
+
+        /* Footer */
+        footer { padding: 40px 56px; border-top: 1px solid var(--border2); display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav { padding: 0 24px; }
+            section { padding: 80px 24px; }
+            .product-card { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
- 
-<!-- NAV -->
- 
+
 <nav>
-  <a href="#" class="nav-logo">JAROX</a>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#products" data-i18n="nav_products">Produkte</a></li>
-      <li><a href="#mission" data-i18n="nav_mission">Mission</a></li>
-      <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
-    </ul>
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('de')">DE</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('fr')">FR</button>
-      <button class="lang-btn" onclick="setLang('it')">IT</button>
-    </div>
-    <a href="https://www.bauabnahme.app" target="_blank" class="nav-cta">BauAbnahme ↗</a>
-  </div>
+    <a href="#" class="nav-logo">JAROX<span class="logo-dot">AI</span></a>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <li><a href="#products" data-i18n="nav_products">Produkte</a></li>
+            <li><a href="#mission" data-i18n="nav_mission">Mission</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+        </ul>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLang('de')">DE</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="https://www.bauabnahme.app" target="_blank" class="nav-cta">BauAbnahme ↗</a>
+    </div>
 </nav>
- 
-<!-- HERO -->
- 
+
 <section class="hero">
-  <div class="hero-mesh"></div>
-  <div class="hero-dots"></div>
-  <div class="hero-lines">
-    <svg viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="300" cy="400" r="200" stroke="#4A90D9" stroke-width="0.5"/>
-      <circle cx="300" cy="400" r="280" stroke="#4A90D9" stroke-width="0.5"/>
-      <circle cx="300" cy="400" r="360" stroke="#4A90D9" stroke-width="0.5"/>
-      <line x1="0" y1="400" x2="600" y2="400" stroke="#4A90D9" stroke-width="0.5"/>
-      <line x1="300" y1="0" x2="300" y2="800" stroke="#4A90D9" stroke-width="0.5"/>
-      <line x1="0" y1="0" x2="600" y2="800" stroke="#4A90D9" stroke-width="0.3"/>
-      <line x1="600" y1="0" x2="0" y2="800" stroke="#4A90D9" stroke-width="0.3"/>
-    </svg>
-  </div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">Swiss AI Software · jarox.ai</span>
-    </div>
-    <h1>Build smarter.<br><em>Work faster.</em></h1>
-    <p class="hero-desc" data-i18n="hero_desc">Jarox entwickelt AI-gestützte Software für Schweizer KMU — präzise, mehrsprachig und konform mit Schweizer Standards.</p>
-    <div class="hero-ctas">
-      <a href="#products" class="btn-primary" data-i18n="hero_cta1">Produkte entdecken →</a>
-      <a href="#contact" class="btn-outline" data-i18n="hero_cta2">Kontakt</a>
-    </div>
-  </div>
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+            <div style="width: 30px; height: 1px; background: var(--accent);"></div>
+            <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 2px;">SWISS AI PRECISION</span>
+        </div>
+        <h1>Build Smarter.<br><span class="accent-text">Work Faster.</span></h1>
+        <p class="hero-desc" data-i18n="hero_desc">Jarox AI entwickelt intelligente Softwarelösungen für Schweizer KMU — effizient, sicher und lokal verwurzelt.</p>
+        <div style="display: flex; gap: 15px;">
+            <a href="#products" class="btn-primary" data-i18n="hero_cta1">Apps Entdecken</a>
+            <a href="#contact" style="color: var(--silver); padding: 14px; text-decoration: none; font-size: 14px;" data-i18n="hero_cta2">Projekt anfragen</a>
+        </div>
+    </div>
 </section>
- 
-<!-- TICKER -->
- 
+
 <div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item"><span class="ticker-dot"></span>Swiss AI Software</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DE · FR · IT · EN</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Swiss QR Standard</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DSG Konform</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Precision Engineering</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Mobile First</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Jarox.ai</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Swiss AI Software</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DE · FR · IT · EN</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Swiss QR Standard</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DSG Konform</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Precision Engineering</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Mobile First</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Jarox.ai</span>
-  </div>
+    <div class="ticker-inner">
+        <span>✦ Swiss AI Software</span>
+        <span>✦ DE · FR · IT · EN</span>
+        <span>✦ Swiss QR Standard</span>
+        <span>✦ DSG Konform</span>
+        <span>✦ Precision Engineering</span>
+        <span>✦ Jarox AI</span>
+        <!-- Repeat for Loop -->
+        <span>✦ Swiss AI Software</span>
+        <span>✦ DE · FR · IT · EN</span>
+        <span>✦ Swiss QR Standard</span>
+    </div>
 </div>
- 
-<!-- PRODUCTS -->
- 
+
 <section id="products">
-  <div class="label reveal" data-i18n="products_label">Produkte</div>
-  <h2 class="reveal" data-i18n="products_title">Software mit Wirkung.</h2>
-  <p class="sub reveal" data-i18n="products_sub">Jede App löst ein konkretes Problem — ohne Overhead, direkt einsetzbar.</p>
- 
-  <div class="product-hero reveal">
-    <div class="product-main">
-      <div class="product-badge" data-i18n="product_badge">Live · verfügbar</div>
-      <h3>BauAbnahme</h3>
-      <p data-i18n="product_desc">Die digitale Handwerker-App für die Schweiz. Rapporte, Offerten und Rechnungen direkt auf der Baustelle — Schweizer QR-Rechnung inklusive.</p>
-      <div class="features-list">
-        <span class="feature-item" data-i18n="feat1">Rapport digital</span>
-        <span class="feature-item" data-i18n="feat2">Offerten erstellen</span>
-        <span class="feature-item" data-i18n="feat3">QR-Rechnung CH</span>
-        <span class="feature-item" data-i18n="feat4">Mahnung senden</span>
-        <span class="feature-item" data-i18n="feat5">Digitale Signatur</span>
-        <span class="feature-item">DE / FR / IT / EN</span>
-      </div>
-      <a href="https://www.bauabnahme.app" target="_blank" class="product-link">bauabnahme.app ↗</a>
-    </div>
-    <div class="product-visual">
-      <div class="mockup">
-        <div class="mockup-bar">
-          <div class="mockup-dot" style="background:#4A90D9;opacity:0.6"></div>
-          <div class="mockup-dot" style="background:#4A90D9;opacity:0.3"></div>
-          <div class="mockup-dot" style="background:#4A90D9;opacity:0.15"></div>
-        </div>
-        <div class="mockup-row accent"></div>
-        <div class="mockup-row silver"></div>
-        <div class="mockup-row short"></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;">
-          <div class="mockup-card">
-            <div class="mockup-num">24</div>
-            <div class="mockup-lbl" data-i18n="mock1">Rapporte</div>
-          </div>
-          <div class="mockup-card">
-            <div class="mockup-num">CHF 18k</div>
-            <div class="mockup-lbl" data-i18n="mock2">Ausstehend</div>
-          </div>
-        </div>
-        <div class="mockup-row" style="margin-top:16px;background:rgba(74,144,217,0.2);"></div>
-        <div class="mockup-row short" style="background:rgba(200,214,232,0.08);"></div>
-      </div>
-    </div>
-  </div>
- 
-  <div class="upcoming-grid reveal">
-    <div class="upcoming-card">
-      <div class="soon-tag" data-i18n="soon">Bald</div>
-      <h4 data-i18n="up1_title">Weitere Apps</h4>
-      <p data-i18n="up1_desc">Jarox entwickelt kontinuierlich neue AI-Lösungen für Schweizer KMU.</p>
-    </div>
-    <div class="upcoming-card">
-      <div class="soon-tag" data-i18n="request">Anfrage</div>
-      <h4 data-i18n="up2_title">Custom Development</h4>
-      <p data-i18n="up2_desc">Du hast eine Idee die eine App lösen könnte? Lass uns sprechen.</p>
-    </div>
-  </div>
+    <h2 class="reveal">Software mit Wirkung.</h2>
+    <div class="product-card reveal">
+        <div class="p-info">
+            <div style="border: 1px solid var(--accent); color: var(--accent); display: inline-block; padding: 4px 8px; font-size: 10px; font-family: 'Space Mono'; margin-bottom: 20px;">LIVE</div>
+            <h3>BauAbnahme</h3>
+            <p style="margin: 20px 0; color: var(--muted);" data-i18n="product_desc">Die digitale Lösung für Schweizer Handwerker. Rapporte, Rechnungen und QR-Codes direkt vor Ort erstellen.</p>
+            <a href="https://www.bauabnahme.app" target="_blank" style="color: var(--accent); text-decoration: none; font-family: 'Space Mono'; font-size: 13px;">bauabnahme.app ↗</a>
+        </div>
+        <div class="p-visual">
+            <!-- Simplified Mockup Placeholder -->
+            <div style="width: 200px; height: 300px; background: var(--navy); border: 4px solid #1A253A; border-radius: 20px;"></div>
+        </div>
+    </div>
 </section>
- 
-<!-- MISSION -->
- 
-<section id="mission" style="background:var(--navy);border-top:1px solid var(--border2);">
-  <div class="label reveal" data-i18n="mission_label">Mission</div>
-  <h2 class="reveal" data-i18n="mission_title">Präzision trifft Innovation.</h2>
-  <p class="sub reveal" data-i18n="mission_sub">Wir bauen Software die funktioniert — für echte Menschen mit echten Problemen.</p>
- 
-  <div class="values reveal">
-    <div class="value">
-      <div class="value-num">01</div>
-      <span class="value-icon">🎯</span>
-      <h4 data-i18n="v1_title">Fokus</h4>
-      <p data-i18n="v1_desc">Keine Feature-Overload. Jede App löst ein spezifisches Problem präzise.</p>
-    </div>
-    <div class="value">
-      <div class="value-num">02</div>
-      <span class="value-icon">🇨🇭</span>
-      <h4 data-i18n="v2_title">Swiss Made</h4>
-      <p data-i18n="v2_desc">Entwickelt für die Schweiz — 4 Sprachen, lokale Standards, Swiss Quality.</p>
-    </div>
-    <div class="value">
-      <div class="value-num">03</div>
-      <span class="value-icon">⚡</span>
-      <h4 data-i18n="v3_title">Speed</h4>
-      <p data-i18n="v3_desc">Sofort einsetzbar. Keine langen Einführungen. Produktiv ab Tag eins.</p>
-    </div>
-    <div class="value">
-      <div class="value-num">04</div>
-      <span class="value-icon">🔒</span>
-      <h4 data-i18n="v4_title">Privacy</h4>
-      <p data-i18n="v4_desc">Daten bleiben in der EU. DSG-konform. Sicherheit ist kein Kompromiss.</p>
-    </div>
-  </div>
+
+<section id="contact" style="background: var(--navy2);">
+    <div class="reveal">
+        <h2 data-i18n="contact_title">Sprechen wir über Ihr Projekt.</h2>
+        <div style="max-width: 600px; margin-top: 40px;">
+            <form action="#">
+                <div class="field">
+                    <label data-i18n="form_name">Name</label>
+                    <input type="text" placeholder="Ihre Firma / Name">
+                </div>
+                <div class="field">
+                    <label>E-Mail</label>
+                    <input type="email" placeholder="mail@beispiel.ch">
+                </div>
+                <div class="field">
+                    <label data-i18n="form_msg">Nachricht</label>
+                    <textarea rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Nachricht senden</button>
+            </form>
+        </div>
+    </div>
 </section>
- 
-<!-- CONTACT -->
- 
-<section id="contact">
-  <div class="label reveal" data-i18n="contact_label">Kontakt</div>
-  <h2 class="reveal" data-i18n="contact_title">Sprechen wir.</h2>
-  <p class="sub reveal" data-i18n="contact_sub">Fragen, Partnerschaftsanfragen oder einfach Hallo — wir antworten schnell.</p>
- 
-  <div class="form reveal">
-    <div class="field">
-      <label data-i18n="form_name">Name</label>
-      <input type="text" data-i18n-placeholder="form_name_ph" placeholder="Dein Name">
-    </div>
-    <div class="field">
-      <label data-i18n="form_email">E-Mail</label>
-      <input type="email" placeholder="email@example.com">
-    </div>
-    <div class="field">
-      <label data-i18n="form_msg">Nachricht</label>
-      <textarea data-i18n-placeholder="form_msg_ph" placeholder="Wie können wir helfen?"></textarea>
-    </div>
-    <button class="btn-primary" style="width:100%;max-width:560px;justify-content:center;" data-i18n="form_send">Senden →</button>
-    <p class="form-notice" data-i18n="form_notice">Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.</p>
-  </div>
-</section>
- 
-<!-- FOOTER -->
- 
+
 <footer>
-  <div class="footer-logo">JAROX</div>
-  <div class="footer-mid">© 2026 Jarox · Meierskappel, Schweiz</div>
-  <ul class="footer-links">
-    <li><a href="https://www.bauabnahme.app" target="_blank">BauAbnahme</a></li>
-    <li><a onclick="openModal('agb')" data-i18n="footer_agb">AGB</a></li>
-    <li><a onclick="openModal('datenschutz')" data-i18n="footer_privacy">Datenschutz</a></li>
-    <li><a onclick="openModal('impressum')" data-i18n="footer_imprint">Impressum</a></li>
-  </ul>
+    <div>JAROX AI — 2026</div>
+    <div style="display: flex; gap: 20px;">
+        <a href="#" style="color: var(--muted); text-decoration: none;">Impressum</a>
+        <a href="#" style="color: var(--muted); text-decoration: none;">Datenschutz</a>
+    </div>
 </footer>
- 
-<!-- MODALS -->
- 
-<div class="modal-overlay" id="modal-agb">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('agb')">✕</button>
-    <h3 data-i18n="agb_title">Allgemeine Geschäftsbedingungen</h3>
-    <div class="modal-section">
-      <h4 data-i18n="agb_s1_title">1. Geltungsbereich</h4>
-      <p data-i18n="agb_s1">Diese AGB gelten für alle Leistungen von Jarox (Meierskappel, Schweiz) gegenüber Nutzern der Software unter jarox.ai und bauabnahme.app.</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="agb_s2_title">2. Leistungen</h4>
-      <p data-i18n="agb_s2">Jarox stellt Software-as-a-Service (SaaS) Lösungen für Schweizer Unternehmen bereit. Die Leistungen werden online erbracht.</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="agb_s3_title">3. Abonnements & Preise</h4>
-      <p data-i18n="agb_s3">Die aktuellen Preise sind auf den jeweiligen Produktseiten ersichtlich. Kündigung jederzeit zum Monatsende möglich.</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="agb_s4_title">4. Haftung</h4>
-      <p data-i18n="agb_s4">Haftung für leichte Fahrlässigkeit ist ausgeschlossen. Es gilt Schweizer Recht. Gerichtsstand ist Luzern.</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="agb_s5_title">5. Datenschutz</h4>
-      <p data-i18n="agb_s5">Die Bearbeitung von Personendaten erfolgt gemäss unserer Datenschutzerklärung und dem Schweizer DSG.</p>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:24px;" data-i18n="agb_date">Stand: Mai 2026</p>
-  </div>
-</div>
- 
-<div class="modal-overlay" id="modal-datenschutz">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('datenschutz')">✕</button>
-    <h3 data-i18n="priv_title">Datenschutzerklärung</h3>
-    <div class="modal-section">
-      <h4 data-i18n="priv_s1_title">Verantwortliche Stelle</h4>
-      <p data-i18n="priv_s1">Jarox, Seilerhof 9, 6344 Meierskappel, Schweiz · ask@jarox.ai</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="priv_s2_title">Erhobene Daten</h4>
-      <p data-i18n="priv_s2">Wir erheben E-Mail-Adresse, Firmendaten, Kundendaten, Rapporte, Rechnungen und Kontaktanfragen. Keine Weitergabe an Dritte zu Werbezwecken.</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="priv_s3_title">Dienstleister</h4>
-      <p data-i18n="priv_s3">Supabase (EU), Vercel, Stripe, Sentry — alle DSGVO-konform. Daten verbleiben in der EU.</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="priv_s4_title">Ihre Rechte (Art. 25 DSG)</h4>
-      <p data-i18n="priv_s4">Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten. Anfragen an: ask@jarox.ai</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="priv_s5_title">Cookies</h4>
-      <p data-i18n="priv_s5">Diese Website verwendet keine Tracking-Cookies. Nur technisch notwendige Session-Daten werden gespeichert.</p>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:24px;" data-i18n="priv_date">Stand: Mai 2026</p>
-  </div>
-</div>
- 
-<div class="modal-overlay" id="modal-impressum">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('impressum')">✕</button>
-    <h3 data-i18n="imp_title">Impressum</h3>
-    <div class="modal-section">
-      <h4 data-i18n="imp_s1_title">Anbieter</h4>
-      <p>Jarox<br>Seilerhof 9<br>6344 Meierskappel<br>Schweiz</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="imp_s2_title">Kontakt</h4>
-      <p>ask@jarox.ai<br>www.jarox.ai</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="imp_s3_title">Urheberrecht</h4>
-      <p data-i18n="imp_s3">Alle Rechte vorbehalten. Inhalte dürfen ohne ausdrückliche Genehmigung nicht vervielfältigt werden.</p>
-    </div>
-    <div class="modal-section">
-      <h4 data-i18n="imp_s4_title">Haftungsausschluss</h4>
-      <p data-i18n="imp_s4">Für externe Links übernimmt Jarox keine Haftung. Es gilt Schweizer Recht, Gerichtsstand Luzern.</p>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:24px;" data-i18n="imp_date">Stand: Mai 2026</p>
-  </div>
-</div>
- 
+
 <script>
-const i18n = {
-  de: {
-    nav_products: 'Produkte', nav_mission: 'Mission', nav_contact: 'Kontakt',
-    hero_desc: 'Jarox entwickelt AI-gestützte Software für Schweizer KMU — präzise, mehrsprachig und konform mit Schweizer Standards.',
-    hero_cta1: 'Produkte entdecken →', hero_cta2: 'Kontakt',
-    products_label: 'Produkte', products_title: 'Software mit Wirkung.', products_sub: 'Jede App löst ein konkretes Problem — ohne Overhead, direkt einsetzbar.',
-    product_badge: 'Live · verfügbar', product_desc: 'Die digitale Handwerker-App für die Schweiz. Rapporte, Offerten und Rechnungen direkt auf der Baustelle — Schweizer QR-Rechnung inklusive.',
-    feat1: 'Rapport digital', feat2: 'Offerten erstellen', feat3: 'QR-Rechnung CH', feat4: 'Mahnung senden', feat5: 'Digitale Signatur',
-    mock1: 'Rapporte', mock2: 'Ausstehend', soon: 'Bald', request: 'Anfrage',
-    up1_title: 'Weitere Apps', up1_desc: 'Jarox entwickelt kontinuierlich neue AI-Lösungen für Schweizer KMU.',
-    up2_title: 'Custom Development', up2_desc: 'Du hast eine Idee die eine App lösen könnte? Lass uns sprechen.',
-    mission_label: 'Mission', mission_title: 'Präzision trifft Innovation.', mission_sub: 'Wir bauen Software die funktioniert — für echte Menschen mit echten Problemen.',
-    v1_title: 'Fokus', v1_desc: 'Keine Feature-Overload. Jede App löst ein spezifisches Problem präzise.',
-    v2_title: 'Swiss Made', v2_desc: 'Entwickelt für die Schweiz — 4 Sprachen, lokale Standards.',
-    v3_title: 'Speed', v3_desc: 'Sofort einsetzbar. Keine langen Einführungen. Produktiv ab Tag eins.',
-    v4_title: 'Privacy', v4_desc: 'Daten bleiben in der EU. DSG-konform. Sicherheit ist kein Kompromiss.',
-    contact_label: 'Kontakt', contact_title: 'Sprechen wir.', contact_sub: 'Fragen, Partnerschaftsanfragen oder einfach Hallo — wir antworten schnell.',
-    form_name: 'Name', form_name_ph: 'Dein Name', form_email: 'E-Mail', form_msg: 'Nachricht', form_msg_ph: 'Wie können wir helfen?',
-    form_send: 'Senden →', form_notice: 'Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.',
-    footer_agb: 'AGB', footer_privacy: 'Datenschutz', footer_imprint: 'Impressum',
-    agb_title: 'Allgemeine Geschäftsbedingungen', agb_s1_title: '1. Geltungsbereich', agb_s1: 'Diese AGB gelten für alle Leistungen von Jarox (Meierskappel, Schweiz) gegenüber Nutzern der Software unter jarox.ai und bauabnahme.app.',
-    agb_s2_title: '2. Leistungen', agb_s2: 'Jarox stellt Software-as-a-Service (SaaS) Lösungen für Schweizer Unternehmen bereit.',
-    agb_s3_title: '3. Abonnements & Preise', agb_s3: 'Die aktuellen Preise sind auf den jeweiligen Produktseiten ersichtlich. Kündigung jederzeit zum Monatsende.',
-    agb_s4_title: '4. Haftung', agb_s4: 'Haftung für leichte Fahrlässigkeit ist ausgeschlossen. Es gilt Schweizer Recht. Gerichtsstand ist Luzern.',
-    agb_s5_title: '5. Datenschutz', agb_s5: 'Die Bearbeitung von Personendaten erfolgt gemäss unserer Datenschutzerklärung und dem Schweizer DSG.',
-    agb_date: 'Stand: Mai 2026',
-    priv_title: 'Datenschutzerklärung', priv_s1_title: 'Verantwortliche Stelle', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Schweiz · ask@jarox.ai',
-    priv_s2_title: 'Erhobene Daten', priv_s2: 'Wir erheben E-Mail-Adresse, Firmendaten und Kontaktanfragen. Keine Weitergabe an Dritte zu Werbezwecken.',
-    priv_s3_title: 'Dienstleister', priv_s3: 'Supabase (EU), Vercel, Stripe, Sentry — alle DSGVO-konform.',
-    priv_s4_title: 'Ihre Rechte (Art. 25 DSG)', priv_s4: 'Auskunft, Berichtigung und Löschung: ask@jarox.ai',
-    priv_s5_title: 'Cookies', priv_s5: 'Keine Tracking-Cookies. Nur technisch notwendige Session-Daten.', priv_date: 'Stand: Mai 2026',
-    imp_title: 'Impressum', imp_s1_title: 'Anbieter', imp_s2_title: 'Kontakt', imp_s3_title: 'Urheberrecht', imp_s3: 'Alle Rechte vorbehalten.',
-    imp_s4_title: 'Haftungsausschluss', imp_s4: 'Für externe Links übernimmt Jarox keine Haftung. Gerichtsstand Luzern.', imp_date: 'Stand: Mai 2026'
-  },
-  en: {
-    nav_products: 'Products', nav_mission: 'Mission', nav_contact: 'Contact',
-    hero_desc: 'Jarox builds AI-powered software for Swiss SMEs — precise, multilingual and compliant with Swiss standards.',
-    hero_cta1: 'Discover products →', hero_cta2: 'Contact',
-    products_label: 'Products', products_title: 'Software that works.', products_sub: 'Every app solves a specific problem — no overhead, ready to use.',
-    product_badge: 'Live · available', product_desc: 'The digital app for Swiss tradespeople. Reports, quotes and invoices directly on site — Swiss QR invoice included.',
-    feat1: 'Digital reports', feat2: 'Create quotes', feat3: 'Swiss QR invoice', feat4: 'Send reminders', feat5: 'Digital signature',
-    mock1: 'Reports', mock2: 'Outstanding', soon: 'Soon', request: 'Request',
-    up1_title: 'More apps', up1_desc: 'Jarox continuously develops new AI solutions for Swiss SMEs.',
-    up2_title: 'Custom development', up2_desc: 'Got an idea an app could solve? Let\'s talk.',
-    mission_label: 'Mission', mission_title: 'Precision meets innovation.', mission_sub: 'We build software that works — for real people with real problems.',
-    v1_title: 'Focus', v1_desc: 'No feature overload. Each app solves one specific problem precisely.',
-    v2_title: 'Swiss Made', v2_desc: 'Built for Switzerland — 4 languages, local standards.',
-    v3_title: 'Speed', v3_desc: 'Ready immediately. No long onboarding. Productive from day one.',
-    v4_title: 'Privacy', v4_desc: 'Data stays in the EU. DSG-compliant. Security is not a compromise.',
-    contact_label: 'Contact', contact_title: "Let's talk.", contact_sub: 'Questions, partnership requests or just hello — we respond quickly.',
-    form_name: 'Name', form_name_ph: 'Your name', form_email: 'Email', form_msg: 'Message', form_msg_ph: 'How can we help?',
-    form_send: 'Send →', form_notice: 'Your data is treated confidentially and not shared with third parties.',
-    footer_agb: 'Terms', footer_privacy: 'Privacy', footer_imprint: 'Imprint',
-    agb_title: 'Terms & Conditions', agb_s1_title: '1. Scope', agb_s1: 'These terms apply to all services provided by Jarox (Meierskappel, Switzerland) to users of jarox.ai and jarox.ai.',
-    agb_s2_title: '2. Services', agb_s2: 'Jarox provides Software-as-a-Service (SaaS) solutions for Swiss companies.',
-    agb_s3_title: '3. Subscriptions & Prices', agb_s3: 'Current prices are shown on the respective product pages. Cancel anytime at month end.',
-    agb_s4_title: '4. Liability', agb_s4: 'Liability for minor negligence is excluded. Swiss law applies. Jurisdiction is Lucerne.',
-    agb_s5_title: '5. Privacy', agb_s5: 'Personal data is processed in accordance with our privacy policy and Swiss DSG.',
-    agb_date: 'As of: May 2026',
-    priv_title: 'Privacy Policy', priv_s1_title: 'Responsible Party', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Switzerland · ask@jarox.ai',
-    priv_s2_title: 'Data Collected', priv_s2: 'We collect email addresses, company data and contact requests. No sharing with third parties for advertising.',
-    priv_s3_title: 'Service Providers', priv_s3: 'Supabase (EU), Vercel, Stripe, Sentry — all GDPR-compliant.',
-    priv_s4_title: 'Your Rights', priv_s4: 'Access, correction and deletion: ask@jarox.ai',
-    priv_s5_title: 'Cookies', priv_s5: 'No tracking cookies. Only technically necessary session data.', priv_date: 'As of: May 2026',
-    imp_title: 'Imprint', imp_s1_title: 'Provider', imp_s2_title: 'Contact', imp_s3_title: 'Copyright', imp_s3: 'All rights reserved.',
-    imp_s4_title: 'Disclaimer', imp_s4: 'Jarox accepts no liability for external links. Jurisdiction: Lucerne.', imp_date: 'As of: May 2026'
-  },
-  fr: {
-    nav_products: 'Produits', nav_mission: 'Mission', nav_contact: 'Contact',
-    hero_desc: 'Jarox développe des logiciels propulsés par l\'IA pour les PME suisses — précis, multilingues et conformes aux normes suisses.',
-    hero_cta1: 'Découvrir les produits →', hero_cta2: 'Contact',
-    products_label: 'Produits', products_title: 'Des logiciels efficaces.', products_sub: 'Chaque app résout un problème concret — sans superflu, prête à l\'emploi.',
-    product_badge: 'En ligne · disponible', product_desc: 'L\'app numérique pour les artisans suisses. Rapports, offres et factures directement sur le chantier — facture QR suisse incluse.',
-    feat1: 'Rapport numérique', feat2: 'Créer des offres', feat3: 'Facture QR CH', feat4: 'Envoyer rappels', feat5: 'Signature numérique',
-    mock1: 'Rapports', mock2: 'En attente', soon: 'Bientôt', request: 'Demande',
-    up1_title: 'Autres apps', up1_desc: 'Jarox développe continuellement de nouvelles solutions IA pour les PME suisses.',
-    up2_title: 'Développement sur mesure', up2_desc: 'Vous avez une idée qu\'une app pourrait résoudre ? Parlons-en.',
-    mission_label: 'Mission', mission_title: 'Précision rencontre innovation.', mission_sub: 'Nous construisons des logiciels qui fonctionnent — pour de vraies personnes avec de vrais problèmes.',
-    v1_title: 'Focus', v1_desc: 'Pas de surcharge de fonctionnalités. Chaque app résout un problème précis.',
-    v2_title: 'Swiss Made', v2_desc: 'Conçu pour la Suisse — 4 langues, normes locales.',
-    v3_title: 'Rapidité', v3_desc: 'Opérationnel immédiatement. Pas de longue formation.',
-    v4_title: 'Confidentialité', v4_desc: 'Données en UE. Conforme DSG. La sécurité n\'est pas un compromis.',
-    contact_label: 'Contact', contact_title: 'Parlons-en.', contact_sub: 'Questions, demandes de partenariat ou juste bonjour — nous répondons rapidement.',
-    form_name: 'Nom', form_name_ph: 'Votre nom', form_email: 'E-mail', form_msg: 'Message', form_msg_ph: 'Comment pouvons-nous vous aider?',
-    form_send: 'Envoyer →', form_notice: 'Vos données sont traitées confidentiellement et ne sont pas partagées avec des tiers.',
-    footer_agb: 'CGV', footer_privacy: 'Confidentialité', footer_imprint: 'Mentions légales',
-    agb_title: 'Conditions Générales de Vente', agb_s1_title: '1. Champ d\'application', agb_s1: 'Ces CGV s\'appliquent à tous les services de Jarox (Meierskappel, Suisse) aux utilisateurs de jarox.ai et jarox.ai.',
-    agb_s2_title: '2. Services', agb_s2: 'Jarox fournit des solutions SaaS pour les entreprises suisses.',
-    agb_s3_title: '3. Abonnements & Prix', agb_s3: 'Les prix actuels sont indiqués sur les pages produits. Résiliation possible à tout moment.',
-    agb_s4_title: '4. Responsabilité', agb_s4: 'La responsabilité pour négligence légère est exclue. Droit suisse applicable. Juridiction: Lucerne.',
-    agb_s5_title: '5. Protection des données', agb_s5: 'Les données personnelles sont traitées conformément à notre politique de confidentialité et à la LPD suisse.',
-    agb_date: 'En vigueur: mai 2026',
-    priv_title: 'Politique de confidentialité', priv_s1_title: 'Responsable', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Suisse · ask@jarox.ai',
-    priv_s2_title: 'Données collectées', priv_s2: 'Nous collectons adresses e-mail, données d\'entreprise et demandes de contact. Pas de partage à des fins publicitaires.',
-    priv_s3_title: 'Prestataires', priv_s3: 'Supabase (UE), Vercel, Stripe, Sentry — tous conformes RGPD.',
-    priv_s4_title: 'Vos droits', priv_s4: 'Accès, rectification et suppression: ask@jarox.ai',
-    priv_s5_title: 'Cookies', priv_s5: 'Pas de cookies de suivi. Uniquement les données de session nécessaires.', priv_date: 'En vigueur: mai 2026',
-    imp_title: 'Mentions légales', imp_s1_title: 'Éditeur', imp_s2_title: 'Contact', imp_s3_title: 'Droits d\'auteur', imp_s3: 'Tous droits réservés.',
-    imp_s4_title: 'Avertissement', imp_s4: 'Jarox n\'assume aucune responsabilité pour les liens externes. Juridiction: Lucerne.', imp_date: 'En vigueur: mai 2026'
-  },
-  it: {
-    nav_products: 'Prodotti', nav_mission: 'Missione', nav_contact: 'Contatto',
-    hero_desc: 'Jarox sviluppa software basato sull\'IA per le PMI svizzere — preciso, multilingue e conforme agli standard svizzeri.',
-    hero_cta1: 'Scopri i prodotti →', hero_cta2: 'Contatto',
-    products_label: 'Prodotti', products_title: 'Software che funziona.', products_sub: 'Ogni app risolve un problema concreto — senza overhead, pronta all\'uso.',
-    product_badge: 'Live · disponibile', product_desc: 'L\'app digitale per gli artigiani svizzeri. Rapporti, offerte e fatture direttamente in cantiere — fattura QR svizzera inclusa.',
-    feat1: 'Rapporto digitale', feat2: 'Creare offerte', feat3: 'Fattura QR CH', feat4: 'Inviare solleciti', feat5: 'Firma digitale',
-    mock1: 'Rapporti', mock2: 'In attesa', soon: 'Presto', request: 'Richiesta',
-    up1_title: 'Altre app', up1_desc: 'Jarox sviluppa continuamente nuove soluzioni IA per le PMI svizzere.',
-    up2_title: 'Sviluppo personalizzato', up2_desc: 'Hai un\'idea che un\'app potrebbe risolvere? Parliamone.',
-    mission_label: 'Missione', mission_title: 'Precisione incontra innovazione.', mission_sub: 'Costruiamo software che funziona — per persone reali con problemi reali.',
-    v1_title: 'Focus', v1_desc: 'Nessun sovraccarico di funzionalità. Ogni app risolve un problema specifico.',
-    v2_title: 'Swiss Made', v2_desc: 'Sviluppato per la Svizzera — 4 lingue, standard locali.',
-    v3_title: 'Velocità', v3_desc: 'Operativo subito. Nessuna formazione lunga. Produttivo dal primo giorno.',
-    v4_title: 'Privacy', v4_desc: 'Dati nell\'UE. Conforme DSG. La sicurezza non è un compromesso.',
-    contact_label: 'Contatto', contact_title: 'Parliamo.', contact_sub: 'Domande, richieste di partnership o semplicemente ciao — rispondiamo rapidamente.',
-    form_name: 'Nome', form_name_ph: 'Il tuo nome', form_email: 'E-mail', form_msg: 'Messaggio', form_msg_ph: 'Come possiamo aiutarti?',
-    form_send: 'Invia →', form_notice: 'I tuoi dati vengono trattati in modo confidenziale e non condivisi con terzi.',
-    footer_agb: 'CGC', footer_privacy: 'Privacy', footer_imprint: 'Note legali',
-    agb_title: 'Condizioni Generali', agb_s1_title: '1. Ambito', agb_s1: 'Queste condizioni si applicano a tutti i servizi di Jarox (Meierskappel, Svizzera) agli utenti di jarox.ai e jarox.ai.',
-    agb_s2_title: '2. Servizi', agb_s2: 'Jarox fornisce soluzioni SaaS per le aziende svizzere.',
-    agb_s3_title: '3. Abbonamenti & Prezzi', agb_s3: 'I prezzi attuali sono indicati sulle rispettive pagine prodotto. Disdetta possibile in qualsiasi momento.',
-    agb_s4_title: '4. Responsabilità', agb_s4: 'La responsabilità per negligenza lieve è esclusa. Si applica il diritto svizzero. Foro: Lucerna.',
-    agb_s5_title: '5. Privacy', agb_s5: 'I dati personali vengono trattati secondo la nostra informativa sulla privacy e la LPD svizzera.',
-    agb_date: 'In vigore: maggio 2026',
-    priv_title: 'Informativa sulla privacy', priv_s1_title: 'Responsabile', priv_s1: 'Jarox, Seilerhof 9, 6344 Meierskappel, Svizzera · ask@jarox.ai',
-    priv_s2_title: 'Dati raccolti', priv_s2: 'Raccogliamo indirizzi e-mail, dati aziendali e richieste di contatto. Nessuna condivisione per scopi pubblicitari.',
-    priv_s3_title: 'Fornitori di servizi', priv_s3: 'Supabase (UE), Vercel, Stripe, Sentry — tutti conformi GDPR.',
-    priv_s4_title: 'I tuoi diritti', priv_s4: 'Accesso, rettifica e cancellazione: ask@jarox.ai',
-    priv_s5_title: 'Cookie', priv_s5: 'Nessun cookie di tracciamento. Solo dati di sessione tecnici necessari.', priv_date: 'In vigore: maggio 2026',
-    imp_title: 'Note legali', imp_s1_title: 'Editore', imp_s2_title: 'Contatto', imp_s3_title: 'Copyright', imp_s3: 'Tutti i diritti riservati.',
-    imp_s4_title: 'Esclusione di responsabilità', imp_s4: 'Jarox non si assume responsabilità per link esterni. Foro: Lucerna.', imp_date: 'In vigore: maggio 2026'
-  }
-};
- 
-let currentLang = 'de';
- 
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (i18n[lang][key]) el.textContent = i18n[lang][key];
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (i18n[lang][key]) el.placeholder = i18n[lang][key];
-  });
-  document.documentElement.lang = lang;
-}
- 
-function openModal(id) {
-  document.getElementById('modal-' + id).classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
- 
-function closeModal(id) {
-  document.getElementById('modal-' + id).classList.remove('open');
-  document.body.style.overflow = '';
-}
- 
-// Close modal on overlay click
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) {
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
-});
- 
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
-  });
-}, { threshold: 0.1 });
- 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // I18N
+    const i18n = {
+        de: {
+            nav_products: 'Produkte',
+            hero_desc: 'Jarox AI entwickelt intelligente Softwarelösungen für Schweizer KMU — effizient, sicher und lokal verwurzelt.',
+            hero_cta1: 'Apps Entdecken',
+            contact_title: 'Sprechen wir über Ihr Projekt.'
+        },
+        en: {
+            nav_products: 'Products',
+            hero_desc: 'Jarox AI builds intelligent software solutions for Swiss SMEs — efficient, secure, and locally rooted.',
+            hero_cta1: 'Explore Apps',
+            contact_title: "Let's discuss your project."
+        }
+    };
+
+    function setLang(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(i18n[lang][key]) el.textContent = i18n[lang][key];
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
+        });
+    }
+
+    // Intersection Observer for Reveal Effect
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
- 
+
 </body>
 </html>
