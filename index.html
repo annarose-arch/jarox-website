@@ -1,384 +1,303 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jarox AI — Swiss Precision Software</title>
-    
-    <!-- SEO / GitHub Preview Tags -->
-    <meta name="description" content="Jarox AI entwickelt präzise, AI-gestützte Softwarelösungen für Schweizer KMU. DSG-konform und mehrsprachig.">
-    <meta property="og:title" content="Jarox AI — Swiss Precision Software">
-    <meta property="og:description" content="Intelligente Automatisierung für das Schweizer Handwerk und Gewerbe.">
-    <meta property="og:type" content="website">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarox — Swiss AI Software</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #050508;
+    --navy2: #0A0A0F;
+    --navy3: #0F0F1A;
+    --navy4: #161625;
+    --silver: #E2E8F0;
+    --platinum: #FFFFFF;
+    --accent: #8B5CF6; /* Electric Purple */
+    --accent-glow: rgba(139, 92, 246, 0.4);
+    --cyan: #06B6D4;
+    --text: #94A3B8;
+    --muted: #475569;
+    --border: rgba(139, 92, 246, 0.15);
+    --border2: rgba(255, 255, 255, 0.05);
+  }
 
-        :root {
-            --navy: #050C1A;
-            --navy2: #080F1E;
-            --navy3: #0D1526;
-            --navy4: #111C30;
-            --silver: #C8D6E8;
-            --platinum: #E8EEF5;
-            --accent: #4A90D9;
-            --accent-dim: rgba(74,144,217,0.12);
-            --text: #D4E0EE;
-            --muted: #4A5A72;
-            --border: rgba(200,214,232,0.1);
-            --border2: rgba(200,214,232,0.06);
-        }
+  html { scroll-behavior: smooth; }
 
-        html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-        body {
-            background: var(--navy);
-            color: var(--text);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  /* Grainy Texture Overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 998;
+  }
 
-        /* Subtle Noise Texture Overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 998;
-        }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 56px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border2);
+    background: rgba(5, 5, 8, 0.7);
+    backdrop-filter: blur(24px);
+  }
 
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 0 56px;
-            height: 72px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border2);
-            background: rgba(5,12,26,0.88);
-            backdrop-filter: blur(20px);
-        }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--platinum);
+    letter-spacing: 0.4em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+  }
 
-        .nav-logo {
-            font-family: 'Space Mono', monospace;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--platinum);
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+  .nav-logo:hover {
+    text-shadow: 0 0 15px var(--accent-glow);
+  }
 
-        .logo-dot { color: var(--accent); }
+  .nav-logo::before {
+    content: '';
+    width: 10px; height: 10px;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    transform: rotate(45deg);
+  }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
+  .nav-right { display: flex; align-items: center; gap: 40px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
 
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+  }
 
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 160px 56px 100px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  }
 
-        .nav-links a:hover { color: var(--silver); }
+  .hero-lines svg {
+    position: absolute;
+    right: -10%; top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.15;
+    width: 60%;
+    pointer-events: none;
+  }
 
-        .lang-switcher { display: flex; gap: 4px; }
+  h1 {
+    font-size: clamp(50px, 8vw, 100px);
+    font-weight: 700;
+    line-height: 0.9;
+    color: var(--platinum);
+    margin-bottom: 30px;
+  }
 
-        .lang-btn {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--muted);
-            background: transparent;
-            border: 1px solid transparent;
-            padding: 4px 8px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(to right, var(--accent), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-        .lang-btn.active {
-            color: var(--accent);
-            border-color: rgba(74,144,217,0.3);
-            background: rgba(74,144,217,0.08);
-        }
+  .hero-desc {
+    font-size: 19px;
+    max-width: 550px;
+    color: var(--text);
+    margin-bottom: 40px;
+  }
 
-        .nav-cta {
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--navy) !important;
-            background: var(--silver);
-            padding: 8px 18px;
-            border-radius: 4px;
-            text-decoration: none;
-        }
+  .btn-primary {
+    background: var(--platinum);
+    color: var(--navy);
+    padding: 15px 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
 
-        /* HERO Section */
-        .hero {
-            min-height: 100vh;
-            padding: 140px 56px 100px;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
+  .btn-primary:hover {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
 
-        .hero-mesh {
-            position: absolute; inset: 0;
-            background: radial-gradient(ellipse 70% 60% at 80% 40%, rgba(74,144,217,0.07) 0%, transparent 60%);
-            z-index: -1;
-        }
+  /* PRODUCTS SECTION */
+  #products { background: var(--navy2); padding: 120px 56px; }
 
-        .hero-content { position: relative; max-width: 800px; z-index: 2; }
+  .product-hero {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
 
-        h1 {
-            font-size: clamp(48px, 6.5vw, 88px);
-            font-weight: 700;
-            line-height: 1.0;
-            margin-bottom: 32px;
-            color: var(--platinum);
-        }
+  .product-main { padding: 60px; }
+  .product-badge {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    margin-bottom: 25px;
+    display: inline-block;
+    border: 1px solid var(--border);
+  }
 
-        h1 span.accent-text {
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(200,214,232,0.4);
-        }
+  /* Language Switcher */
+  .lang-btn.active {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
 
-        .hero-desc {
-            font-size: 18px;
-            color: var(--muted);
-            max-width: 540px;
-            margin-bottom: 48px;
-        }
+  /* FOOOTER */
+  footer {
+    padding: 60px 56px;
+    border-top: 1px solid var(--border2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-        /* Buttons */
-        .btn-primary {
-            background: var(--silver);
-            color: var(--navy);
-            padding: 14px 32px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-primary:hover { background: var(--platinum); transform: translateY(-2px); }
-
-        /* Ticker Animation */
-        .ticker {
-            border-y: 1px solid var(--border2);
-            padding: 16px 0;
-            background: var(--navy2);
-            overflow: hidden;
-        }
-
-        .ticker-inner {
-            display: flex;
-            gap: 60px;
-            animation: ticker 30s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes ticker {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        /* Sections General */
-        section { padding: 120px 56px; }
-        
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* Products Grid */
-        .product-card {
-            background: var(--navy3);
-            border: 1px solid var(--border2);
-            border-radius: 12px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            overflow: hidden;
-            margin-top: 40px;
-        }
-
-        .p-info { padding: 60px; }
-        .p-visual { background: var(--navy4); padding: 40px; display: flex; justify-content: center; align-items: center; }
-
-        /* Form Styling */
-        .field { margin-bottom: 20px; }
-        .field label { display: block; font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; }
-        .field input, .field textarea {
-            width: 100%; background: var(--navy); border: 1px solid var(--border2); padding: 14px; color: white; border-radius: 4px; outline: none;
-        }
-        .field input:focus { border-color: var(--accent); }
-
-        /* Footer */
-        footer { padding: 40px 56px; border-top: 1px solid var(--border2); display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            nav { padding: 0 24px; }
-            section { padding: 80px 24px; }
-            .product-card { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-        }
-    </style>
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .product-hero { grid-template-columns: 1fr; }
+    h1 { font-size: 50px; }
+  }
+</style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="nav-logo">JAROX<span class="logo-dot">AI</span></a>
-    <div class="nav-right">
-        <ul class="nav-links">
-            <li><a href="#products" data-i18n="nav_products">Produkte</a></li>
-            <li><a href="#mission" data-i18n="nav_mission">Mission</a></li>
-            <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
-        </ul>
-        <div class="lang-switcher">
-            <button class="lang-btn active" onclick="setLang('de')">DE</button>
-            <button class="lang-btn" onclick="setLang('en')">EN</button>
-        </div>
-        <a href="https://www.bauabnahme.app" target="_blank" class="nav-cta">BauAbnahme ↗</a>
+  <a href="#" class="nav-logo">JAROX</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#products">Produkte</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <div class="lang-switcher" style="display:flex; gap:10px;">
+        <button class="lang-btn active" onclick="setLang('de')" style="background:none; border:none; color:inherit; cursor:pointer; font-family:'Space Mono'; font-size:11px;">DE</button>
+        <button class="lang-btn" onclick="setLang('en')" style="background:none; border:none; color:inherit; cursor:pointer; font-family:'Space Mono'; font-size:11px;">EN</button>
     </div>
+    <a href="https://www.bauabnahme.app" target="_blank" class="nav-cta">BauAbnahme ↗</a>
+  </div>
 </nav>
 
 <section class="hero">
-    <div class="hero-mesh"></div>
-    <div class="hero-content">
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
-            <div style="width: 30px; height: 1px; background: var(--accent);"></div>
-            <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 2px;">SWISS AI PRECISION</span>
-        </div>
-        <h1>Build Smarter.<br><span class="accent-text">Work Faster.</span></h1>
-        <p class="hero-desc" data-i18n="hero_desc">Jarox AI entwickelt intelligente Softwarelösungen für Schweizer KMU — effizient, sicher und lokal verwurzelt.</p>
-        <div style="display: flex; gap: 15px;">
-            <a href="#products" class="btn-primary" data-i18n="hero_cta1">Apps Entdecken</a>
-            <a href="#contact" style="color: var(--silver); padding: 14px; text-decoration: none; font-size: 14px;" data-i18n="hero_cta2">Projekt anfragen</a>
-        </div>
+  <div class="hero-lines">
+    <svg viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="400" cy="400" r="300" stroke="url(#paint0_linear)" stroke-width="0.5"/>
+      <circle cx="400" cy="400" r="200" stroke="var(--accent)" stroke-width="0.2" stroke-dasharray="10 10"/>
+      <defs>
+        <linearGradient id="paint0_linear" x1="400" y1="100" x2="400" y2="700" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#8B5CF6"/>
+          <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  
+  <div class="hero-content">
+    <h1 class="reveal">Next-Gen<br><em>AI Intelligence.</em></h1>
+    <p class="hero-desc reveal" data-i18n="hero_desc">Jarox entwickelt spezialisierte AI-Software für Schweizer Unternehmen. Wir verbinden lokale Präzision mit globaler Rechenpower.</p>
+    <div class="hero-ctas reveal">
+      <a href="#products" class="btn-primary">Produkte entdecken</a>
+      <a href="#contact" style="color:var(--platinum); margin-left:25px; text-decoration:none; font-size:14px;">Beratung anfordern →</a>
     </div>
+  </div>
 </section>
-
-<div class="ticker">
-    <div class="ticker-inner">
-        <span>✦ Swiss AI Software</span>
-        <span>✦ DE · FR · IT · EN</span>
-        <span>✦ Swiss QR Standard</span>
-        <span>✦ DSG Konform</span>
-        <span>✦ Precision Engineering</span>
-        <span>✦ Jarox AI</span>
-        <!-- Repeat for Loop -->
-        <span>✦ Swiss AI Software</span>
-        <span>✦ DE · FR · IT · EN</span>
-        <span>✦ Swiss QR Standard</span>
-    </div>
-</div>
 
 <section id="products">
-    <h2 class="reveal">Software mit Wirkung.</h2>
-    <div class="product-card reveal">
-        <div class="p-info">
-            <div style="border: 1px solid var(--accent); color: var(--accent); display: inline-block; padding: 4px 8px; font-size: 10px; font-family: 'Space Mono'; margin-bottom: 20px;">LIVE</div>
-            <h3>BauAbnahme</h3>
-            <p style="margin: 20px 0; color: var(--muted);" data-i18n="product_desc">Die digitale Lösung für Schweizer Handwerker. Rapporte, Rechnungen und QR-Codes direkt vor Ort erstellen.</p>
-            <a href="https://www.bauabnahme.app" target="_blank" style="color: var(--accent); text-decoration: none; font-family: 'Space Mono'; font-size: 13px;">bauabnahme.app ↗</a>
-        </div>
-        <div class="p-visual">
-            <!-- Simplified Mockup Placeholder -->
-            <div style="width: 200px; height: 300px; background: var(--navy); border: 4px solid #1A253A; border-radius: 20px;"></div>
+  <div class="product-hero reveal">
+    <div class="product-main">
+      <div class="product-badge">Active Deployment</div>
+      <h3 style="font-size:40px; color:white; margin-bottom:15px;">BauAbnahme</h3>
+      <p style="margin-bottom:30px;" data-i18n="product_desc">Die führende digitale Lösung für Schweizer Handwerker. AI-gestützte Dokumentation und automatisierte QR-Rechnungsstellung direkt vor Ort.</p>
+      <a href="https://www.bauabnahme.app" class="nav-cta" style="padding:12px 25px;">Jetzt testen</a>
+    </div>
+    <div style="background:linear-gradient(45deg, var(--navy4), var(--navy3)); display:flex; align-items:center; justify-content:center; padding:40px;">
+        <div style="width:80%; height:200px; border:1px solid var(--border); border-radius:8px; background:rgba(0,0,0,0.3); backdrop-filter:blur(10px); padding:20px;">
+            <div style="width:40%; height:10px; background:var(--accent); border-radius:20px; margin-bottom:15px;"></div>
+            <div style="width:90%; height:6px; background:var(--muted); border-radius:20px; margin-bottom:10px;"></div>
+            <div style="width:70%; height:6px; background:var(--muted); border-radius:20px;"></div>
         </div>
     </div>
-</section>
-
-<section id="contact" style="background: var(--navy2);">
-    <div class="reveal">
-        <h2 data-i18n="contact_title">Sprechen wir über Ihr Projekt.</h2>
-        <div style="max-width: 600px; margin-top: 40px;">
-            <form action="#">
-                <div class="field">
-                    <label data-i18n="form_name">Name</label>
-                    <input type="text" placeholder="Ihre Firma / Name">
-                </div>
-                <div class="field">
-                    <label>E-Mail</label>
-                    <input type="email" placeholder="mail@beispiel.ch">
-                </div>
-                <div class="field">
-                    <label data-i18n="form_msg">Nachricht</label>
-                    <textarea rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Nachricht senden</button>
-            </form>
-        </div>
-    </div>
+  </div>
 </section>
 
 <footer>
-    <div>JAROX AI — 2026</div>
-    <div style="display: flex; gap: 20px;">
-        <a href="#" style="color: var(--muted); text-decoration: none;">Impressum</a>
-        <a href="#" style="color: var(--muted); text-decoration: none;">Datenschutz</a>
-    </div>
+  <div class="nav-logo" style="font-size:16px;">JAROX</div>
+  <div style="font-size:12px; font-family:'Space Mono'; color:var(--muted);">© 2026 MEIERSKAPPEL, CH</div>
+  <div style="display:flex; gap:20px; font-size:12px;">
+    <a href="#" style="color:inherit; text-decoration:none;">Privacy</a>
+    <a href="#" style="color:inherit; text-decoration:none;">Terms</a>
+  </div>
 </footer>
 
 <script>
-    // I18N
-    const i18n = {
-        de: {
-            nav_products: 'Produkte',
-            hero_desc: 'Jarox AI entwickelt intelligente Softwarelösungen für Schweizer KMU — effizient, sicher und lokal verwurzelt.',
-            hero_cta1: 'Apps Entdecken',
-            contact_title: 'Sprechen wir über Ihr Projekt.'
-        },
-        en: {
-            nav_products: 'Products',
-            hero_desc: 'Jarox AI builds intelligent software solutions for Swiss SMEs — efficient, secure, and locally rooted.',
-            hero_cta1: 'Explore Apps',
-            contact_title: "Let's discuss your project."
-        }
-    };
+  // Simple Reveal Logic[cite: 1]
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.style.opacity = 1;
+      if (e.isIntersecting) e.target.style.transform = "translateY(0)";
+    });
+  });
 
-    function setLang(lang) {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if(i18n[lang][key]) el.textContent = i18n[lang][key];
-        });
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
-        });
-    }
-
-    // Intersection Observer for Reveal Effect
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "all 0.8s ease-out";
+    observer.observe(el);
+  });
 </script>
 
 </body>
