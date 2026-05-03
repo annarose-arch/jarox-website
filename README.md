@@ -23,5 +23,5 @@ Jarox AI entwickelt hochspezialisierte, AI-gestützte Softwarelösungen für Sch
 
 ### 📬 Kontakt
 - **Web:** [jarox.ai](https://jarox.ai)
-- **E-Mail:** [hello@jarox.ai](mailto:hello@jarox.ai)
+- **E-Mail:** [ask@jarox.ai](mailto:ask@jarox.ai)
 - **Sitz:** Meierskappel, Luzern 🇨🇭
